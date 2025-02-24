@@ -1,0 +1,6 @@
+.yarn/*
+.pnp.*
+.env
+node_modules
+coverage
+dist

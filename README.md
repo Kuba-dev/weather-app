@@ -1,13 +1,16 @@
 ### 1. We register props typing in the component folder called types.ts, use type. Sample code and structure below.
+
 ```
 ├── Header/
     ├── index.tsx
-    ├── styled.ts 
+    ├── styled.ts
     └── types.ts
 ```
+
 #### Example component
 
 index.tsx
+
 ```tsx
 import Navigation from '@components/Navigation'
 
@@ -22,7 +25,9 @@ export default function Header() {
   )
 }
 ```
+
 styled.ts
+
 ```ts
 import { styled } from 'styled-components'
 
@@ -39,28 +44,35 @@ export const Title = styled.h1<Props>`
   ...
 `
 ```
+
 types.ts
+
 ```ts
 // Here we describe the type and export it to the required file
 export type Props = {
   fontWeight?: 200 | 300 | 400 | 500 | 600 | 700
 }
 ```
-### 2. When using interfaces for typing, be sure to add the letter "I" at the beginning of the name. 
+
+### 2. When using interfaces for typing, be sure to add the letter "I" at the beginning of the name.
+
 #### Example:
 
 src/style/theme.ts
+
 ```ts
 import { ITheme } from '../types/iTheme'
 // We have a regular theme and to typify it we use an interface
-// that we import from the src/types folder, the letter "i" is 
+// that we import from the src/types folder, the letter "i" is
 // required at the beginning of the name.
 
 export const baseTheme: ITheme = {
   ...
 }
 ```
+
 src/types/iTheme.ts
+
 ```ts
 // The letter "I" is required at the beginning of the interface name.
 
@@ -69,7 +81,8 @@ export interface ITheme {
 }
 ```
 
-### 3. Mixin default Text. The default value is specified for the paragraph (font-size: 24, font-weight: 400, color: #FFFFFF(theme.color.font)), if the default value contains the values ​​you need, then we do not specify the values. 
+### 3. Mixin default Text. The default value is specified for the paragraph (font-size: 24, font-weight: 400, color: #FFFFFF(theme.color.font)), if the default value contains the values ​​you need, then we do not specify the values.
+
 #### Example:
 
 ```ts
@@ -78,8 +91,8 @@ import styled from 'styled-components'
 import { defaultText } from '@src/style/mixins'
 
 export const Paragraph = styled.p`
-  ${defaultText()} 
-//  fontSize = 24,
+  ${defaultText()}
+  //  fontSize = 24,
 //  fontWeight = 400,
 //  color = '#FFFFFF'
 
@@ -88,6 +101,7 @@ export const Paragraph = styled.p`
 ```
 
 ### If you need text with other parameters, then take the value from 'theme' and pass them to the mixin
+
 #### Example:
 
 ```ts
@@ -108,7 +122,8 @@ export const Title = styled.h2`
 ```
 
 ### 4. If you pass more than 3 props to a component, then we do the destructuring inside the component.
-#### Example: 
+
+#### Example:
 
 ```tsx
 import { PropsCheckbox } from './types'
