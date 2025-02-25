@@ -14,6 +14,8 @@ export default tseslint.config(
       "lint-staged.config.js",
       "commitlint.config.js",
       "vite.config.ts",
+      "cypress/",
+      "cypress.config.ts"
     ],
   },
   {
