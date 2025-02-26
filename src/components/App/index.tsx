@@ -1,7 +1,14 @@
+import Header from '@components/Header'
+
+import { ContainerApp, Main, WrapperApp } from './styled'
+
 export default function App() {
   return (
-    <>
-      <h1>Weather app</h1>
-    </>
+    <ContainerApp>
+      <WrapperApp>
+        <Header />
+        <Main />
+      </WrapperApp>
+    </ContainerApp>
   )
 }
