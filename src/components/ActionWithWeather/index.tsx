@@ -1,3 +1,10 @@
+import { ActionButton, Wrapper } from './styled'
+
 export default function ActionWithWeather() {
-  return <h3></h3>
+  return (
+    <Wrapper>
+      <ActionButton>Daily</ActionButton>
+      <ActionButton>Hourly</ActionButton>
+    </Wrapper>
+  )
 }

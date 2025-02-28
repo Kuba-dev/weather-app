@@ -52,7 +52,7 @@ export interface ITheme {
 
   sizes: {
     border: { default: number; bold: number }
-    borderRadius: { default: number }
+    borderRadius: { default: number; big: number }
   }
 
   durations: {

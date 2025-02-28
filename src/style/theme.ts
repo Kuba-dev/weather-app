@@ -49,7 +49,7 @@ export const baseTheme: ITheme = {
 
   sizes: {
     border: { default: 1, bold: 2 },
-    borderRadius: { default: 10 },
+    borderRadius: { default: 10, big: 20 },
   },
 
   durations: {
