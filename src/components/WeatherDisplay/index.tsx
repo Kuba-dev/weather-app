@@ -1,7 +1,13 @@
 import WeatherItem from '@components/WeatherItem'
 import { image } from '@src/constants'
+import { Wrapper } from '@src/style/shared'
 
-import { Title, TitleWrapper, WeatherWrapper, Wrapper } from './styled'
+import {
+  Title,
+  TitleWrapper,
+  WeatherDailyWrapper,
+  WeatherTodayWrapper,
+} from './styled'
 
 const weatherWeek = [
   { id: 1, dayWeek: 'Monday', icon: image.sunnyWeather, temperature: 10 },
@@ -15,14 +21,14 @@ const weatherWeek = [
 export default function WeatherDisplay() {
   return (
     <Wrapper>
-      <WeatherWrapper>
+      <WeatherTodayWrapper>
         <img src={image.sunnyWeather} alt='sunny weather' />
         <TitleWrapper>
           <Title>Today</Title>
           <Title>10°C</Title>
         </TitleWrapper>
-      </WeatherWrapper>
-      <WeatherWrapper>
+      </WeatherTodayWrapper>
+      <WeatherDailyWrapper>
         {weatherWeek.map(({ id, dayWeek, icon, temperature }) => (
           <WeatherItem
             key={id}
@@ -31,7 +37,7 @@ export default function WeatherDisplay() {
             image={icon}
           />
         ))}
-      </WeatherWrapper>
+      </WeatherDailyWrapper>
     </Wrapper>
   )
 }

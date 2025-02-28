@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const sizeImage = 85
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.li`
   ${positioningFlex({ flexDirection: 'column' })}
 
   gap: ${({ theme }) => theme.gap.sizeM}px;
