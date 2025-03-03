@@ -1,9 +1,9 @@
-import { FieldValues, useForm } from 'react-hook-form'
+import { Controller, FieldValues, useForm } from 'react-hook-form'
 
 import { FormSearchCity, InputCity, SearchButton } from './styled'
 
 export default function SearchCity() {
-  const { register, handleSubmit } = useForm()
+  const { control, handleSubmit } = useForm()
 
   const onSubmit = (data: FieldValues) => {
     console.log(data)
@@ -12,11 +12,18 @@ export default function SearchCity() {
 
   return (
     <FormSearchCity onSubmit={handleSubmit(onSubmit)}>
-      <InputCity
-        type='text'
-        autoComplete='address-level2'
-        placeholder='Search city'
-        {...register('city', { required: true })}
+      <Controller
+        name='city'
+        control={control}
+        rules={{ required: true }}
+        render={({ field }) => (
+          <InputCity
+            {...field}
+            type='text'
+            autoComplete='address-level2'
+            placeholder='Search city'
+          />
+        )}
       />
       <SearchButton type='submit'>Search</SearchButton>
     </FormSearchCity>

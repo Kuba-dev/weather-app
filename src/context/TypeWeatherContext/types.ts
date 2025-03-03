@@ -1,5 +1,6 @@
+export type WeatherCategory = 'DAILY' | 'HOURLY'
+
 export type TypeWeather = {
-  typeWeather: 'Daily' | 'Hourly'
-  handleClickDaily: () => void
-  handleClickHourly: () => void
+  typeWeather: WeatherCategory
+  handleClick: (type: WeatherCategory) => void
 }

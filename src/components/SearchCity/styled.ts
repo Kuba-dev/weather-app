@@ -1,4 +1,4 @@
-import { Button, defaultText, positioningFlex } from '@src/style/mixins'
+import { Button, defaultText, positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
 
 export const FormSearchCity = styled.form`

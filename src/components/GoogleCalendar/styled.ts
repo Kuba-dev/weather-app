@@ -1,4 +1,4 @@
-import { Button, positioningFlex } from '@src/style/mixins'
+import { Button, positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div``

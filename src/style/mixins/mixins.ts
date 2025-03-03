@@ -1,28 +1,11 @@
 import { baseTheme } from '@src/style/theme'
-import { ITheme } from '@src/types/theme'
 import styled from 'styled-components'
 
-type PositioningFlexProps = {
-  justifyContent?: string
-  alignItems?: string
-  flexDirection?: string
-}
-
-type ThemeProps = {
-  theme: ITheme
-}
-
-type DefaultTextProps = {
-  fontSize?: number | ((props: ThemeProps) => number)
-  fontWeight?: number | ((props: ThemeProps) => number)
-  color?: string | ((props: ThemeProps) => string)
-}
-
-type BackgroundImageProps = {
-  backgroundImage?: string | null
-  backgroundSize?: string | ((props: ThemeProps) => string)
-  backgroundRepeat?: string | ((props: ThemeProps) => string)
-}
+import {
+  BackgroundImageProps,
+  DefaultTextProps,
+  PositioningFlexProps,
+} from './types'
 
 export const backgroundImage = ({
   backgroundImage = null,

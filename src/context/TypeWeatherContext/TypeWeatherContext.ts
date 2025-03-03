@@ -1,16 +1,17 @@
 import { useState } from 'react'
 
-import { TypeWeather } from './types'
+import { TypeWeatherConst } from './const'
+import { TypeWeather, WeatherCategory } from './types'
 
 export const useCreateTypeWeatherContext = function (): TypeWeather {
-  const [typeWeather, setTypeWeather] = useState<'Daily' | 'Hourly'>('Daily')
+  const [typeWeather, setTypeWeather] = useState<WeatherCategory>(
+    TypeWeatherConst.Hourly,
+  )
 
-  const handleClickDaily = () => setTypeWeather('Daily')
-  const handleClickHourly = () => setTypeWeather('Hourly')
+  const handleClick = (type: WeatherCategory) => setTypeWeather(type)
 
   return {
     typeWeather,
-    handleClickDaily,
-    handleClickHourly,
+    handleClick,
   }
 }

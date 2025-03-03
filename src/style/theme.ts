@@ -57,8 +57,8 @@ export const baseTheme: ITheme = {
   },
 
   zIndex: {
-    load: 100,
-    l: 10,
+    load: 10,
+    l: 5,
     m: 0,
   },
 }

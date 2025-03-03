@@ -1,7 +1,8 @@
+import WeatherItem from '@components/WeatherItem'
+import WeatherTodayDisplay from '@components/WeatherTodayDisplay'
 import { image } from '@src/constants'
 import { Wrapper } from '@src/style/shared'
 
-import WeatherItem from '../WeatherItem'
 import { WeatherTimeWrapper } from './styled'
 
 const weatherTimes = [
@@ -23,6 +24,7 @@ const weatherTimes = [
 export default function WeatherDisplayTime() {
   return (
     <Wrapper>
+      <WeatherTodayDisplay temperature={10} weatherIcon={image.sunnyWeather} />
       <WeatherTimeWrapper>
         {weatherTimes.map(({ id, time, icon, temperature }) => (
           <WeatherItem

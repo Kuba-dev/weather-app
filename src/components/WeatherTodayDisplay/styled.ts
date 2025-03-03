@@ -24,7 +24,6 @@ export const WeatherTodayWrapper = styled.div`
 export const WeatherDailyWrapper = styled.ul`
   ${positioningFlex({ justifyContent: 'end', alignItems: 'center' })};
 
-  max-width: 715px;
-  width: 100%;
+  width: 30%;
   gap: ${({ theme }) => theme.gap.size3XL}px;
 `

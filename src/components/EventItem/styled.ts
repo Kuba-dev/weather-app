@@ -1,4 +1,4 @@
-import { defaultText, positioningFlex } from '@src/style/mixins'
+import { defaultText, positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
 
 export const Item = styled.li`

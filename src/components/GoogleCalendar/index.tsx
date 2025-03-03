@@ -31,12 +31,8 @@ export default function GoogleCalendar() {
         <AuthButton>Sign Up</AuthButton>
       </AuthActionsWrapper>
       <EventsList>
-        {eventsList.map(event => (
-          <EventItem
-            key={event.id}
-            summury={event.summary}
-            startTime={event.start}
-          />
+        {eventsList.map(({ id, summary, start }) => (
+          <EventItem key={id} summury={summary} startTime={start} />
         ))}
       </EventsList>
     </Wrapper>
