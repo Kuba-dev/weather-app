@@ -5,3 +5,8 @@ export const image = {
   backgroundImageWeather: backgroundImageWeather,
   sunnyWeather: sunnyWeather,
 }
+
+export enum TypeWeatherConst {
+  Daily = 'DAILY',
+  Hourly = 'HOURLY',
+}
