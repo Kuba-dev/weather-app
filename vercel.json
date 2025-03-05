@@ -1,3 +1,14 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
+    "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "x-robots-tag",
+          "value": "index, follow"
+        }
+      ]
+    }
+  ]
 }
