@@ -26,7 +26,8 @@
       "@assets/*": ["./src/assets/*"],
       "@page/*": ["./src/page/*"],
       "@store/*": ["./src/store/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@style/*": ["./src/style/*"]
     }
   },
   "include": ["src"],

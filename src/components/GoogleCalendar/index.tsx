@@ -1,0 +1,41 @@
+import EventItem from '@components/EventItem'
+import { memo } from 'react'
+
+import { AuthActionsWrapper, AuthButton, EventsList, Wrapper } from './styled'
+
+const eventsList = [
+  {
+    id: 'event1',
+    summary: 'Встреча с клиентом',
+    location: 'Минск, Беларусь',
+    start: '10:00',
+  },
+  {
+    id: 'event2',
+    summary: 'Обед с командой',
+    location: 'Минск, ресторан "Старое место"',
+    start: '13:00',
+  },
+  {
+    id: 'event3',
+    summary: 'Онлайн-совещание',
+    location: 'Zoom',
+    start: '16:00',
+  },
+]
+
+export default memo(function GoogleCalendar() {
+  return (
+    <Wrapper>
+      <AuthActionsWrapper>
+        <AuthButton>Sign In</AuthButton>
+        <AuthButton>Sign Up</AuthButton>
+      </AuthActionsWrapper>
+      <EventsList>
+        {eventsList.map(({ id, summary, start }) => (
+          <EventItem key={id} summury={summary} startTime={start} />
+        ))}
+      </EventsList>
+    </Wrapper>
+  )
+})

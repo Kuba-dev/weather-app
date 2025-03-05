@@ -1,7 +1,26 @@
+import Header from '@components/Header'
+import Main from '@components/Main'
+import WeatherDisplay from '@components/WeatherDisplay'
+import WeatherDisplayTime from '@components/WeatherDisplayTime'
+import { TypeWeatherConst } from '@src/constants'
+import { useWeatherType } from '@src/hooks/useWeatherType'
+
+import { ContainerApp, WrapperApp } from './styled'
+
 export default function App() {
+  const { typeWeather } = useWeatherType()
+
   return (
-    <>
-      <h1>Weather app</h1>
-    </>
+    <ContainerApp>
+      <WrapperApp>
+        <Header />
+        <Main />
+      </WrapperApp>
+      {typeWeather.type === TypeWeatherConst.DAILY ? (
+        <WeatherDisplay />
+      ) : (
+        <WeatherDisplayTime />
+      )}
+    </ContainerApp>
   )
 }
