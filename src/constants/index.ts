@@ -7,6 +7,6 @@ export const image = {
 }
 
 export enum TypeWeatherConst {
-  Daily = 'DAILY',
-  Hourly = 'HOURLY',
+  DAILY = 'DAILY',
+  HOURLY = 'HOURLY',
 }

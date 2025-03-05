@@ -2,6 +2,7 @@ import WeatherItem from '@components/WeatherItem'
 import WeatherTodayDisplay from '@components/WeatherTodayDisplay'
 import { image } from '@src/constants'
 import { Wrapper } from '@src/style/shared'
+import { memo } from 'react'
 
 import { WeatherTimeWrapper } from './styled'
 
@@ -21,7 +22,7 @@ const weatherTimes = [
   { id: 13, time: '14:00', icon: image.sunnyWeather, temperature: 17 },
 ]
 
-export default function WeatherDisplayTime() {
+export default memo(function WeatherDisplayTime() {
   return (
     <Wrapper>
       <WeatherTodayDisplay temperature={10} weatherIcon={image.sunnyWeather} />
@@ -37,4 +38,4 @@ export default function WeatherDisplayTime() {
       </WeatherTimeWrapper>
     </Wrapper>
   )
-}
+})

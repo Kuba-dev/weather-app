@@ -2,6 +2,7 @@ import WeatherItem from '@components/WeatherItem'
 import WeatherTodayDisplay from '@components/WeatherTodayDisplay'
 import { image } from '@src/constants'
 import { Wrapper } from '@src/style/shared'
+import { memo } from 'react'
 
 import { WeatherDailyWrapper } from './styled'
 
@@ -14,7 +15,7 @@ const weatherWeek = [
   { id: 6, dayWeek: 'Saturday', icon: image.sunnyWeather, temperature: 11 },
 ]
 
-export default function WeatherDisplay() {
+export default memo(function WeatherDisplay() {
   return (
     <Wrapper>
       <WeatherTodayDisplay temperature={10} weatherIcon={image.sunnyWeather} />
@@ -30,4 +31,4 @@ export default function WeatherDisplay() {
       </WeatherDailyWrapper>
     </Wrapper>
   )
-}
+})

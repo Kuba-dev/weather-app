@@ -6,6 +6,8 @@ export const baseTheme: ITheme = {
     primary: '#000000',
     secondary: '#FFFFFF',
     darkBlue: '#122E65',
+    gray: '#666',
+    lightGray: '#CCC',
 
     hoverPrimaryColor: '#333333',
     shadow: '#1D354733',

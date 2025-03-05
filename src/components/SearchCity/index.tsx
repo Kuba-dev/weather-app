@@ -1,8 +1,9 @@
+import { memo } from 'react'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 
 import { FormSearchCity, InputCity, SearchButton } from './styled'
 
-export default function SearchCity() {
+export default memo(function SearchCity() {
   const { control, handleSubmit } = useForm()
 
   const onSubmit = (data: FieldValues) => {
@@ -28,4 +29,4 @@ export default function SearchCity() {
       <SearchButton type='submit'>Search</SearchButton>
     </FormSearchCity>
   )
-}
+})

@@ -1,4 +1,5 @@
 import EventItem from '@components/EventItem'
+import { memo } from 'react'
 
 import { AuthActionsWrapper, AuthButton, EventsList, Wrapper } from './styled'
 
@@ -23,7 +24,7 @@ const eventsList = [
   },
 ]
 
-export default function GoogleCalendar() {
+export default memo(function GoogleCalendar() {
   return (
     <Wrapper>
       <AuthActionsWrapper>
@@ -37,4 +38,4 @@ export default function GoogleCalendar() {
       </EventsList>
     </Wrapper>
   )
-}
+})

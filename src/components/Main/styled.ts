@@ -15,4 +15,20 @@ export const WrapperActionButton = styled.div`
   gap: ${({ theme }) => theme.gap.size3XL}px;
 `
 
-export const ActionButton = styled(Button)``
+export const ActionButton = styled(Button)`
+  background-color: ${({ disabled, theme }) =>
+    disabled ? theme.colors.lightGray : theme.colors.primary};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.colors.gray : theme.colors.secondary};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+
+  &:hover {
+    background-color: ${({ disabled, theme }) =>
+      disabled ? theme.colors.lightGray : theme.colors.hoverPrimaryColor};
+    box-shadow: ${({ disabled }) => (disabled ? 'none' : '')};
+  }
+
+  &:active {
+    opacity: ${({ disabled }) => (disabled ? 1 : 0.6)};
+  }
+`
