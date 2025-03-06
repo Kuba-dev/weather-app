@@ -2,11 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { TypeWeatherState } from './types'
 
-export const typeWeatherSlice = createSlice({
+const initialState = {
+  type: 'DAILY',
+}
+
+const typeWeatherSlice = createSlice({
   name: 'typeWeather',
-  initialState: {
-    type: 'DAILY',
-  },
+  initialState,
   reducers: {
     changeTypeWeatherReducer: (
       state,
