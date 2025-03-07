@@ -1,9 +1,12 @@
-import { useSession } from '@supabase/auth-helpers-react'
 import { useCallback, useRef } from 'react'
 
-import { useActions } from './useActions'
+import { requestAPI } from '@src/api/fetchAPI'
 
-export function useFetchCalendarLastestEvents() {
+import useActions from './useActions'
+
+import { useSession } from '@supabase/auth-helpers-react'
+
+export default function useFetchCalendarLastestEvents() {
   const session = useSession()
   const isFetching = useRef(false)
   const { fetchEventsStart, fetchEventsFailure, fetchEventsSuccess } =
@@ -20,15 +23,18 @@ export function useFetchCalendarLastestEvents() {
     const googleCalendarUrl = `${import.meta.env.VITE_GOOGLE_CALENDAR_URL}&timeMin=${startOfDay}&timeMax=${endOfDay}`
 
     try {
-      const response = await fetch(googleCalendarUrl, {
+      const response = await requestAPI(googleCalendarUrl, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      const data = await response.json()
-      fetchEventsSuccess(data.items)
+      fetchEventsSuccess(response.data.items)
     } catch (error) {
-      fetchEventsFailure((error as Error).message)
+      if (error instanceof Error) {
+        fetchEventsFailure(error.message)
+      } else {
+        fetchEventsFailure(new Error('An unknown error occurred'))
+      }
       isFetching.current = false
     }
   }, [session, fetchEventsStart, fetchEventsFailure, fetchEventsSuccess])

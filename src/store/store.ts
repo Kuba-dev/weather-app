@@ -1,7 +1,7 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-
 import { calendarEventsReducer } from './calendarEvents/calendarEvents.slice'
 import { changeTypeWeatherReducer } from './typeWeather/typeWeather.slice'
+
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 const combinedReducer = combineReducers({
   typeWeather: changeTypeWeatherReducer,

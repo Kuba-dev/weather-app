@@ -40,7 +40,32 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      'simple-import-sort/imports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^react', '^\\w'],
+
+            [
+              '^@src(/.*|$)',
+              '^@public(/.*|$)',
+              '^@components(/.*|$)',
+              '^@constants(/.*|$)',
+              '^@assets(/.*|$)',
+              '^@pages(/.*|$)',
+              '^@store(/.*|$)',
+              '^@utils(/.*|$)',
+              '^@style(/.*|$)',
+            ],
+
+            ['^\\u0000'],
+            ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+
+            ['^.+\\.?(css)$'],
+          ],
+        },
+      ],
       'simple-import-sort/exports': 'error',
     },
   },

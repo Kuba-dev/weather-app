@@ -1,36 +1,64 @@
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-export function useAuthentication() {
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+
+export default function useAuthentication() {
   const supabase = useSupabaseClient()
 
-  const [errorAuth, setErrorAuth] = useState<string | null>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [errorAuth, setErrorAuth] = useState<Error | null>(null)
 
-  async function signIn() {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        scopes: import.meta.env.VITE_SIGN_IN_GOOGLE_API,
-        queryParams: {
-          prompt: 'select_account',
+  const signIn = useCallback(
+    async function () {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          scopes: import.meta.env.VITE_SIGN_IN_GOOGLE_API,
+          queryParams: {
+            prompt: 'select_account',
+          },
         },
+      })
+
+      if (error) {
+        if (error instanceof Error) {
+          setErrorAuth(error)
+        } else {
+          setErrorAuth(new Error('An unknown error occurred'))
+        }
+      }
+    },
+    [supabase],
+  )
+
+  const signOut = useCallback(
+    async function () {
+      await supabase.auth.signOut({ scope: 'global' })
+      setIsAuthenticated(false)
+    },
+    [supabase],
+  )
+
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_, session) => {
+        if (session?.user) {
+          setIsAuthenticated(true)
+        } else {
+          setIsAuthenticated(false)
+        }
       },
-    })
+    )
 
-    if (error) {
-      setErrorAuth((error as Error).message)
+    return () => {
+      authListener.subscription.unsubscribe()
     }
-  }
-
-  async function signOut() {
-    console.log(supabase)
-    await supabase.auth.signOut({ scope: 'others' })
-  }
+  }, [supabase])
 
   return {
     signIn,
     signOut,
     errorAuth,
-    supabase,
+    isAuthenticated,
   }
 }

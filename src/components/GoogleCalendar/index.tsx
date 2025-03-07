@@ -1,34 +1,38 @@
+import { memo, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+
+import {
+  useActions,
+  useAuthentication,
+  useFetchCalendarLastestEvents,
+  useTypedSelector,
+} from '@src/hooks'
+import { ErrorMessage } from '@src/style/shared'
+import { formatGoogleTimeInTime } from '@src/utils/formatGoogleTimeInTime'
 import EventItem from '@components/EventItem'
 import Loading from '@components/Loading'
 import ModalConfirm from '@components/ModalConfirm'
-import { useActions } from '@src/hooks/useActions'
-import { useAuthentication } from '@src/hooks/useAuthentication'
-import { useCalendarEvents } from '@src/hooks/useCalendarEvents'
-import { useFetchCalendarLastestEvents } from '@src/hooks/useFetchCalendarLastestEvents'
-import { ErrorMessage } from '@src/style/shared'
-import { formatGoogleTimeInTime } from '@src/utils/formatGoogleTimeInTime'
-import { memo, useCallback, useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
 
 import { AuthActionsWrapper, AuthButton, EventsList, Wrapper } from './styled'
 
 export default memo(function GoogleCalendar() {
   const [modalOpen, setModalOpen] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  const { signIn, signOut, errorAuth, supabase } = useAuthentication()
+  const { signIn, signOut, errorAuth, isAuthenticated } = useAuthentication()
   const { fetchLatestEvents, session, isFetching } =
     useFetchCalendarLastestEvents()
-  const {
-    events: { events, error, isLoading },
-  } = useCalendarEvents()
+  const { events, error, isLoading } = useTypedSelector(
+    state => state.calendarEvents,
+  )
   const { clearEvents } = useActions()
 
-  const handleClickOnSubmitModal = () => {
+  const handleClickOnSubmitModal = async () => {
     setModalOpen(false)
-    signOut()
+    await signOut()
     clearEvents()
-    setIsAuthenticated(false)
+  }
+  const handleClickSignIn = async () => {
+    await signIn()
   }
   const handleOnCanelCloseModal = () => setModalOpen(false)
   const handleClickOpenModal = () => setModalOpen(true)
@@ -42,15 +46,6 @@ export default memo(function GoogleCalendar() {
     document.body,
   )
 
-  const checkAuthStatus = useCallback(async () => {
-    const { data } = await supabase.auth.getSession()
-    setIsAuthenticated(Boolean(data.session))
-  }, [supabase])
-
-  useEffect(() => {
-    checkAuthStatus()
-  }, [checkAuthStatus])
-
   useEffect(() => {
     if (session && !isFetching.current) {
       fetchLatestEvents()
@@ -60,13 +55,12 @@ export default memo(function GoogleCalendar() {
   return (
     <Wrapper>
       <AuthActionsWrapper>
-        <AuthButton disabled={isAuthenticated} onClick={signIn}>
-          Sign In
-        </AuthButton>
-        <AuthButton disabled={!isAuthenticated} onClick={handleClickOpenModal}>
-          Sign Up
-        </AuthButton>
-        {errorAuth && <ErrorMessage>{errorAuth}</ErrorMessage>}
+        {isAuthenticated ? (
+          <AuthButton onClick={handleClickOpenModal}>Sign Out</AuthButton>
+        ) : (
+          <AuthButton onClick={handleClickSignIn}>Sign In</AuthButton>
+        )}
+        {errorAuth && <ErrorMessage>{errorAuth.message}</ErrorMessage>}
       </AuthActionsWrapper>
       {modalOpen && ModalPortal}
 

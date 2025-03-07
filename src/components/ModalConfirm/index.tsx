@@ -1,5 +1,6 @@
-import { useClickOutside } from '@src/hooks/useClickOutside'
 import { useRef } from 'react'
+
+import useClickOutside from '@src/hooks/useClickOutside'
 
 import {
   ActionsOnModal,

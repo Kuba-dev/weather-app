@@ -1,5 +1,6 @@
-import { positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
+
+import { positioningFlex } from '@src/style/mixins/mixins'
 
 export const Wrapper = styled.header`
   ${positioningFlex({

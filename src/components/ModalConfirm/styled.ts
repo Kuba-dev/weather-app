@@ -1,5 +1,6 @@
-import { Button, defaultText, positioningFlex } from '@style/mixins/mixins'
 import styled from 'styled-components'
+
+import { Button, defaultText, positioningFlex } from '@style/mixins/mixins'
 
 export const Modal = styled.div`
   position: fixed;

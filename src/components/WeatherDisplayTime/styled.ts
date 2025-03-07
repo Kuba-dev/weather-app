@@ -1,5 +1,6 @@
-import { positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
+
+import { positioningFlex } from '@src/style/mixins/mixins'
 
 export const WeatherTimeWrapper = styled.ul`
   ${positioningFlex({ justifyContent: 'space-between', alignItems: 'center' })};

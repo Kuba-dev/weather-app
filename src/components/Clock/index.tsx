@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { formatDate } from '@src/utils/formatDate'
 import { formatTime } from '@src/utils/formatTime'
-import { useEffect, useState } from 'react'
 
 import { WrapperClock } from './styled'
 

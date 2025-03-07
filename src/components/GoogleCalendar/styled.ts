@@ -1,5 +1,6 @@
-import { Button, positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
+
+import { Button, positioningFlex } from '@src/style/mixins/mixins'
 
 export const Wrapper = styled.div``
 
@@ -14,14 +15,7 @@ export const AuthActionsWrapper = styled.div`
   margin-bottom: ${({ theme }) => theme.gap.size3XL}px;
 `
 
-export const AuthButton = styled(Button)`
-  background-color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.lightGray : theme.colors.primary};
-  color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.gray : theme.colors.secondary};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
-`
+export const AuthButton = styled(Button)``
 
 export const EventsList = styled.ul`
   min-height: 150px;

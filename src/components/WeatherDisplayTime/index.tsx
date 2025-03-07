@@ -1,8 +1,9 @@
-import WeatherItem from '@components/WeatherItem'
-import WeatherTodayDisplay from '@components/WeatherTodayDisplay'
+import { memo } from 'react'
+
 import { image } from '@src/constants'
 import { Wrapper } from '@src/style/shared'
-import { memo } from 'react'
+import WeatherItem from '@components/WeatherItem'
+import WeatherTodayDisplay from '@components/WeatherTodayDisplay'
 
 import { WeatherTimeWrapper } from './styled'
 

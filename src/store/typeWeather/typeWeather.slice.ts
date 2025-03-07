@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import { TypeWeatherState } from './types'
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
   type: 'DAILY',

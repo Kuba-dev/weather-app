@@ -1,7 +1,6 @@
-import GoogleCalendar from '@components/GoogleCalendar'
 import { TypeWeatherConst } from '@src/constants'
-import { useActions } from '@src/hooks/useActions'
-import { useWeatherType } from '@src/hooks/useWeatherType'
+import { useActions, useWeatherType } from '@src/hooks'
+import GoogleCalendar from '@components/GoogleCalendar'
 
 import { ActionButton, Wrapper, WrapperActionButton } from './styled'
 
