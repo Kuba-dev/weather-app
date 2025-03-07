@@ -9,7 +9,12 @@ export function useAuthentication() {
   async function signIn() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { scopes: import.meta.env.VITE_SIGN_IN_GOOGLE_API },
+      options: {
+        scopes: import.meta.env.VITE_SIGN_IN_GOOGLE_API,
+        queryParams: {
+          prompt: 'select_account',
+        },
+      },
     })
 
     if (error) {
@@ -18,7 +23,8 @@ export function useAuthentication() {
   }
 
   async function signOut() {
-    await supabase.auth.signOut()
+    console.log(supabase)
+    await supabase.auth.signOut({ scope: 'others' })
   }
 
   return {
