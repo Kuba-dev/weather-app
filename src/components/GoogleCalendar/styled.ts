@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Button, positioningFlex } from '@src/style/mixins/mixins'
+import { Button, defaultText, positioningFlex } from '@src/style/mixins/mixins'
 
 export const Wrapper = styled.div``
 
@@ -20,4 +20,11 @@ export const AuthButton = styled(Button)``
 export const EventsList = styled.ul`
   min-height: 150px;
   position: relative;
+`
+
+export const Title = styled.p`
+  ${({ theme }) =>
+    defaultText({
+      color: theme.colors.primary,
+    })}
 `

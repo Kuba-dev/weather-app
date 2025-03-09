@@ -5,7 +5,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react'
 export default function useAuthentication() {
   const supabase = useSupabaseClient()
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true)
   const [errorAuth, setErrorAuth] = useState<Error | null>(null)
 
   const signIn = useCallback(

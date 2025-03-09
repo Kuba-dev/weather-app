@@ -13,7 +13,13 @@ import EventItem from '@components/EventItem'
 import Loading from '@components/Loading'
 import ModalConfirm from '@components/ModalConfirm'
 
-import { AuthActionsWrapper, AuthButton, EventsList, Wrapper } from './styled'
+import {
+  AuthActionsWrapper,
+  AuthButton,
+  EventsList,
+  Title,
+  Wrapper,
+} from './styled'
 
 export default memo(function GoogleCalendar() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -67,6 +73,14 @@ export default memo(function GoogleCalendar() {
       <EventsList>
         {isLoading && <Loading />}
         {error && <p>{error}</p>}
+        {!isAuthenticated && !error && (
+          <Title>Login to your account to see your events</Title>
+        )}
+        {!events.length &&
+          !isLoading &&
+          isAuthenticated &&
+          isFetching.current &&
+          !error && <Title>There are no events today.</Title>}
         {events.map(({ id, summary, start }) => {
           const dateTime =
             (start as { dateTime?: string }).dateTime ||
