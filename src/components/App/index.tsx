@@ -1,9 +1,9 @@
+import { TypeWeatherConst } from '@src/constants'
+import { useWeatherType } from '@src/hooks'
 import Header from '@components/Header'
 import Main from '@components/Main'
 import WeatherDisplay from '@components/WeatherDisplay'
 import WeatherDisplayTime from '@components/WeatherDisplayTime'
-import { TypeWeatherConst } from '@src/constants'
-import { useWeatherType } from '@src/hooks/useWeatherType'
 
 import { ContainerApp, WrapperApp } from './styled'
 

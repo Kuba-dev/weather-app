@@ -4,7 +4,9 @@ import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { FormSearchCity, InputCity, SearchButton } from './styled'
 
 export default memo(function SearchCity() {
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit } = useForm({
+    defaultValues: { city: '' },
+  })
 
   const onSubmit = (data: FieldValues) => {
     console.log(data)

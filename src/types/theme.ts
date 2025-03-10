@@ -5,6 +5,7 @@ export interface ITheme {
     darkBlue: string
     gray: string
     lightGray: string
+    red: string
 
     hoverPrimaryColor: string
     shadow: string

@@ -1,5 +1,6 @@
-import { defaultText, positioningFlex } from '@src/style/mixins/mixins'
 import styled from 'styled-components'
+
+import { defaultText, positioningFlex } from '@src/style/mixins/mixins'
 
 const sizeImage = 85
 

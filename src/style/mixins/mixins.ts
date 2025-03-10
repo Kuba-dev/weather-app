@@ -1,5 +1,6 @@
-import { baseTheme } from '@src/style/theme'
 import styled from 'styled-components'
+
+import { baseTheme } from '@src/style/theme'
 
 import {
   BackgroundImageProps,

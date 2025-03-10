@@ -1,5 +1,6 @@
-import { image } from '@src/constants'
 import { createGlobalStyle } from 'styled-components'
+
+import { image } from '@src/constants'
 
 import { backgroundImage, positioningFlex } from './mixins/mixins'
 
