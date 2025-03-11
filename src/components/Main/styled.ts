@@ -13,6 +13,7 @@ export const Wrapper = styled.main`
 export const WrapperActionButton = styled.div`
   ${positioningFlex({ justifyContent: 'center', alignItems: 'end' })};
 
+  width: 300px;
   gap: ${({ theme }) => theme.gap.size3XL}px;
 `
 

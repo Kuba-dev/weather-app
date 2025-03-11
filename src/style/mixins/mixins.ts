@@ -54,10 +54,11 @@ export const Button = styled.button`
   width: 140px;
   height: ${({ theme }) => theme.gap.size5XL}px;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.default}px;
-  transition: all ${({ theme }) => theme.durations.ms300}s;
+  transition: all ${({ theme }) => theme.durations.ms300}s ease;
 
   &:hover {
     ${defaultShadow()};
+
     background-color: ${({ theme }) => theme.colors.hoverPrimaryColor};
   }
   &:active {

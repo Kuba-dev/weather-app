@@ -1,5 +1,10 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { requestAPI } from '@src/api/fetchAPI'
 import { TypeWeatherConst } from '@src/constants'
-import { useWeatherType } from '@src/hooks'
+import { useActions, useWeatherType } from '@src/hooks'
+import { getWeatherWeek } from '@src/store/weatherWeek/weatherWeek.slice'
 import Header from '@components/Header'
 import Main from '@components/Main'
 import WeatherDisplay from '@components/WeatherDisplay'
@@ -9,6 +14,35 @@ import { ContainerApp, WrapperApp } from './styled'
 
 export default function App() {
   const { typeWeather } = useWeatherType()
+  const dispatch = useDispatch()
+  const { setLoadingCurrentCity } = useActions()
+
+  const AUTOCOMPLETE_CITY_API = import.meta.env.VITE_CITY_AUTOCOMPLETE_API
+  const CITY_SEARCH_BY_COORDINATE = import.meta.env
+    .VITE_CITY_SEARCH_BY_COORDINATE
+
+  useEffect(() => {
+    const fetchCityWeather = async () => {
+      window.navigator.geolocation.getCurrentPosition(async position => {
+        const { latitude, longitude } = position.coords
+        const response = await requestAPI(
+          `${CITY_SEARCH_BY_COORDINATE}?lat=${latitude}&lon=${longitude}&type=city&lang=en&limit=1&format=json&apiKey=${AUTOCOMPLETE_CITY_API}`,
+        )
+        const { city } = response.data.results[0]
+        dispatch(
+          getWeatherWeek({ lat: latitude, lon: longitude, cityName: city }),
+        )
+        setLoadingCurrentCity(false)
+      })
+    }
+
+    fetchCityWeather()
+  }, [
+    AUTOCOMPLETE_CITY_API,
+    CITY_SEARCH_BY_COORDINATE,
+    dispatch,
+    setLoadingCurrentCity,
+  ])
 
   return (
     <ContainerApp>
