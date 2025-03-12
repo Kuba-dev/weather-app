@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react'
 
 import { requestAPI } from '@src/api/fetchAPI'
+import { env } from '@src/constants'
 
 import useActions from './useActions'
 
@@ -12,6 +13,8 @@ export default function useFetchCalendarLastestEvents() {
   const { fetchEventsStart, fetchEventsFailure, fetchEventsSuccess } =
     useActions()
 
+  const { GOOGLE_CALENDAR_URL } = env
+
   const fetchLatestEvents = useCallback(async () => {
     fetchEventsStart()
     isFetching.current = true
@@ -20,7 +23,7 @@ export default function useFetchCalendarLastestEvents() {
     const startOfDay = new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
     const endOfDay = new Date(new Date().setHours(23, 59, 59)).toISOString()
 
-    const googleCalendarUrl = `${import.meta.env.VITE_GOOGLE_CALENDAR_URL}&timeMin=${startOfDay}&timeMax=${endOfDay}`
+    const googleCalendarUrl = `${GOOGLE_CALENDAR_URL}&timeMin=${startOfDay}&timeMax=${endOfDay}`
 
     try {
       const response = await requestAPI(googleCalendarUrl, {
@@ -37,7 +40,13 @@ export default function useFetchCalendarLastestEvents() {
       }
       isFetching.current = false
     }
-  }, [session, fetchEventsStart, fetchEventsFailure, fetchEventsSuccess])
+  }, [
+    session,
+    fetchEventsStart,
+    fetchEventsFailure,
+    fetchEventsSuccess,
+    GOOGLE_CALENDAR_URL,
+  ])
 
   return { fetchLatestEvents, session, isFetching }
 }

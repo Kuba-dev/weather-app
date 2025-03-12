@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
+import { env } from '@src/constants'
+
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function useAuthentication() {
@@ -8,12 +10,14 @@ export default function useAuthentication() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true)
   const [errorAuth, setErrorAuth] = useState<Error | null>(null)
 
+  const { SIGN_IN_GOOGLE_API } = env
+
   const signIn = useCallback(
     async function () {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          scopes: import.meta.env.VITE_SIGN_IN_GOOGLE_API,
+          scopes: SIGN_IN_GOOGLE_API,
           queryParams: {
             prompt: 'select_account',
           },
@@ -28,7 +32,7 @@ export default function useAuthentication() {
         }
       }
     },
-    [supabase],
+    [supabase, SIGN_IN_GOOGLE_API],
   )
 
   const signOut = useCallback(

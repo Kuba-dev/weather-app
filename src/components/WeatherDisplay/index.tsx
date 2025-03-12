@@ -3,6 +3,7 @@ import { memo } from 'react'
 import { useTypedSelector } from '@src/hooks'
 import { Title, Wrapper } from '@src/style/shared'
 import { getDayOfWeek } from '@src/utils/getDayOfWeek'
+import { flattenWeatherData } from '@src/utils/weatherDataConversions'
 import WeatherItem from '@components/WeatherItem'
 import WeatherTodayDisplay from '@components/WeatherTodayDisplay'
 
@@ -21,55 +22,42 @@ export default memo(function WeatherDisplay() {
     state => state.isLoadingCurrentCity,
   )
 
-  if (isLoading || isLoadingCurrentCity.isLoading) {
+  if (
+    isLoading ||
+    isLoadingCurrentCity.isLoading ||
+    !forecastday ||
+    !cityName ||
+    error
+  ) {
     return (
       <Wrapper>
-        <Loading />
-      </Wrapper>
-    )
-  }
-
-  if (!forecastday || !cityName) {
-    return (
-      <Wrapper>
-        <Title>Find the city in which you want to know the weather</Title>
+        {(isLoading || isLoadingCurrentCity.isLoading) && <Loading />}
+        {(!forecastday || !cityName) &&
+          !(isLoading || isLoadingCurrentCity.isLoading) && (
+            <Title>Find the city in which you want to know the weather</Title>
+          )}
+        {error && <Title>{error}</Title>}
       </Wrapper>
     )
   }
 
   const weekWeather = Object.values(forecastday).slice(1)
 
-  if (error) {
-    return (
-      <Wrapper>
-        <Title>{error}</Title>
-      </Wrapper>
-    )
-  }
-
   return (
     <Wrapper>
       <WeatherTodayDisplay />
       <WeatherDailyWrapper>
-        {weekWeather.map(
-          (
-            {
-              date,
-              day: {
-                avgtemp_c,
-                condition: { icon },
-              },
-            },
-            index,
-          ) => (
+        {weekWeather.map(data => {
+          const { date_epoch, date, avgtemp_c, icon } = flattenWeatherData(data)
+          return (
             <WeatherItem
-              key={index}
+              key={date_epoch}
               time={getDayOfWeek(date)}
               temperature={Math.round(avgtemp_c)}
               image={icon}
             />
-          ),
-        )}
+          )
+        })}
       </WeatherDailyWrapper>
     </Wrapper>
   )

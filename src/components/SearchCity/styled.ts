@@ -52,9 +52,8 @@ export const CityList = styled.ul`
   top: 0px;
   left: 0px;
   transform: translateY(38px);
-  width: 100%;
   width: 200px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.gap.sizeXS}px;
 `
 
@@ -87,6 +86,19 @@ export const ErrorMessage = styled.p`
   ${({ theme }) =>
     defaultText({
       color: theme.colors.red,
+      fontSize: theme.font.fontSize.medium,
+    })};
+
+  position: absolute;
+  bottom: ${({ theme }) => theme.gap.sizeXXS}px;
+  left: ${({ theme }) => theme.gap.sizeXXS}px;
+  transform: ${({ theme }) => `translateY(${theme.gap.sizeL}px)`};
+`
+
+export const AdditionalInfo = styled.p`
+  ${({ theme }) =>
+    defaultText({
+      color: theme.colors.primary,
       fontSize: theme.font.fontSize.medium,
     })};
 

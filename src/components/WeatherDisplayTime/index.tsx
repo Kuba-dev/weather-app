@@ -21,39 +21,34 @@ export default memo(function WeatherDisplayTime() {
     state => state.isLoadingCurrentCity,
   )
 
-  if (isLoading || isLoadingCurrentCity.isLoading) {
+  if (
+    isLoading ||
+    isLoadingCurrentCity.isLoading ||
+    !forecastday ||
+    !cityName ||
+    error
+  ) {
     return (
       <Wrapper>
-        <Loading />
-      </Wrapper>
-    )
-  }
-
-  if (!forecastday || !cityName) {
-    return (
-      <Wrapper>
-        <Title>Find the city in which you want to know the weather</Title>
+        {(isLoading || isLoadingCurrentCity.isLoading) && <Loading />}
+        {(!forecastday || !cityName) &&
+          !(isLoading || isLoadingCurrentCity.isLoading) && (
+            <Title>Find the city in which you want to know the weather</Title>
+          )}
+        {error && <Title>{error}</Title>}
       </Wrapper>
     )
   }
 
   const { hour } = forecastday[0]
 
-  if (error) {
-    return (
-      <Wrapper>
-        <Title>{error}</Title>
-      </Wrapper>
-    )
-  }
-
   return (
     <Wrapper>
       <WeatherTodayDisplay />
       <WeatherTimeWrapper>
-        {hour.map(({ temp_c, time, condition: { icon } }, index) => (
+        {hour.map(({ temp_c, time, time_epoch, condition: { icon } }) => (
           <WeatherItem
-            key={index}
+            key={time_epoch}
             time={getTimeFromDate(time)}
             temperature={Math.round(temp_c)}
             image={icon}

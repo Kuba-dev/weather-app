@@ -4,7 +4,7 @@ type Timer = number | null
 // type SomeFunction = (...args: unknown[]) => void
 type SomeFunction = (event: ChangeEvent<HTMLFormElement>) => void
 
-export function useDebounce<Func extends SomeFunction>(
+export default function useDebounce<Func extends SomeFunction>(
   func: Func,
   delay = 1000,
   setLoading: (loading: boolean) => void,

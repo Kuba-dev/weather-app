@@ -3,11 +3,11 @@ import { takeEvery } from 'redux-saga/effects'
 
 import { calendarEventsReducer } from './calendarEvents/calendarEvents.slice'
 import { loadingCurrentCityReducer } from './loadingCurrentCity/loadingCurrentCity.slice'
+import { getWeatherWeekSaga } from './sagas/weatherWeek.saga'
 import { stateElasticSearchReducer } from './stateElasticSearch/stateElasticSearch.slice'
 import { changeTypeWeatherReducer } from './typeWeather/typeWeather.slice'
 import {
   getWeatherWeek,
-  getWeatherWeekSaga,
   weatherWeekReducer,
 } from './weatherWeek/weatherWeek.slice'
 
