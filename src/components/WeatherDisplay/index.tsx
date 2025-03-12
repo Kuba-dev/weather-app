@@ -33,7 +33,8 @@ export default memo(function WeatherDisplay() {
       <Wrapper>
         {(isLoading || isLoadingCurrentCity.isLoading) && <Loading />}
         {(!forecastday || !cityName) &&
-          !(isLoading || isLoadingCurrentCity.isLoading) && (
+          !(isLoading || isLoadingCurrentCity.isLoading) &&
+          !error && (
             <Title>Find the city in which you want to know the weather</Title>
           )}
         {error && <Title>{error}</Title>}

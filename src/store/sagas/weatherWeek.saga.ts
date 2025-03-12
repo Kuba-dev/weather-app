@@ -31,7 +31,7 @@ export function* getWeatherWeekSaga(action: GetWeatherWeekAction): Generator {
     )
   } catch (error) {
     if (error instanceof Error) {
-      yield put(weatherWeekActions.getWeatherWeekError(error.message))
+      yield put(weatherWeekActions.getWeatherWeekError('City not found'))
     } else {
       yield put(
         weatherWeekActions.getWeatherWeekError('An unknown error occurred'),
