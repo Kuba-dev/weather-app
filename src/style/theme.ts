@@ -1,4 +1,3 @@
-import { image } from '@src/constants'
 import { ITheme } from '@src/types/theme'
 
 export const baseTheme: ITheme = {
@@ -15,8 +14,6 @@ export const baseTheme: ITheme = {
     translucent: '#D9D9D933',
     translucentSecondary: '#E8E8E845',
   },
-
-  backgroundImageWeather: image.backgroundImageWeather,
 
   font: {
     fontFamily: { inter: 'Inter' },
@@ -40,6 +37,7 @@ export const baseTheme: ITheme = {
     size4XL: 40,
     size5XL: 45,
     size6XL: 50,
+    size7XL: 70,
   },
 
   media: {

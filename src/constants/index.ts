@@ -6,6 +6,12 @@ import loading from '@assets/images/loading.gif'
 
 export const realFetch = false
 
+export enum LinksPages {
+  default = '/',
+  home = 'home',
+  error = 'error',
+}
+
 export const image = {
   backgroundDefault: backgroundDefault,
   backgroundSunny: backgroundSunny,

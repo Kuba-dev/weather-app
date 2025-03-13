@@ -1,5 +1,7 @@
 import { Component, ErrorInfo } from 'react'
 
+import ErrorPage from '@src/page/Error'
+
 import { Props, State } from './types'
 
 class ErrorBoundary extends Component<Props, State> {
@@ -20,7 +22,7 @@ class ErrorBoundary extends Component<Props, State> {
     const { children } = this.props
 
     if (hasError) {
-      return <h1>error</h1>
+      return <ErrorPage />
     }
     return children
   }

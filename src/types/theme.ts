@@ -13,8 +13,6 @@ export interface ITheme {
     translucentSecondary: string
   }
 
-  backgroundImageWeather: string
-
   font: {
     fontFamily: { inter: string }
     fontWeight: { bold: number; default: number }
@@ -43,6 +41,7 @@ export interface ITheme {
     size4XL: number
     size5XL: number
     size6XL: number
+    size7XL: number
   }
 
   media: {
