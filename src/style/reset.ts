@@ -1,12 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { image } from '@src/constants'
+import { PropsReset } from '@src/types/reset'
 
 import { backgroundImage, positioningFlex } from './mixins/mixins'
 
-export default createGlobalStyle`
+export default createGlobalStyle<PropsReset>`
 body {
-  ${backgroundImage({ backgroundImage: image.backgroundImageWeather, backgroundSize: 'cover' })}
+  ${({ backgroundWeatherImage }) => backgroundImage({ backgroundImage: backgroundWeatherImage, backgroundSize: 'cover' })}
   ${positioningFlex({ flexDirection: 'column' })}
 
   background-position: center center;

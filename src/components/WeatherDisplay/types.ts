@@ -6,13 +6,16 @@ export type WeatherDataCity = {
 export type WeatherDay = {
   date_epoch: string
   date: string
-  day: {
-    avgtemp_c: number
-    condition: {
-      icon: string
-    }
-  }
+  day: Day
   hour: Hour[]
+}
+
+type Day = {
+  avgtemp_c: number
+  condition: {
+    text: string
+    icon: string
+  }
 }
 
 type Hour = {

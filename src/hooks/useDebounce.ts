@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef } from 'react'
+import { ChangeEvent, useCallback, useEffect, useRef } from 'react'
 
 type Timer = number | null
 // type SomeFunction = (...args: unknown[]) => void
@@ -19,15 +19,18 @@ export default function useDebounce<Func extends SomeFunction>(
     }
   }, [])
 
-  const debouncedFunction = ((...args) => {
-    if (timer.current !== null) {
-      clearTimeout(timer.current)
-    }
-    setLoading(true)
-    timer.current = window.setTimeout(() => {
-      func(...args)
-    }, delay)
-  }) as Func
+  const debouncedFunction = useCallback(
+    ((...args) => {
+      if (timer.current !== null) {
+        clearTimeout(timer.current)
+      }
+      setLoading(true)
+      timer.current = window.setTimeout(() => {
+        func(...args)
+      }, delay)
+    }) as Func,
+    [delay, setLoading, func],
+  )
 
   return debouncedFunction
 }

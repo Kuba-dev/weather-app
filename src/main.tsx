@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
-import App from '@src/components/App'
-import Global from '@style/reset'
+import App from '@components/App'
+import ErrorBoundary from '@components/ErrorBoundary'
+import GlobalWithRedux from '@components/GlobalWithRedux'
 
 import { store } from './store/store'
 import { baseTheme } from './style/theme'
@@ -20,10 +21,12 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={baseTheme}>
-        <Global />
-        <SessionContextProvider supabaseClient={supabase}>
-          <App />
-        </SessionContextProvider>
+        <GlobalWithRedux />
+        <ErrorBoundary>
+          <SessionContextProvider supabaseClient={supabase}>
+            <App />
+          </SessionContextProvider>
+        </ErrorBoundary>
       </ThemeProvider>
     </Provider>
   </StrictMode>,

@@ -1,6 +1,16 @@
-import { createAction, createSlice } from '@reduxjs/toolkit'
+import { WeatherDay } from '@src/components/WeatherDisplay/types'
 
-const initialState = {
+import { createAction, createSlice } from '@reduxjs/toolkit'
+type InitStateType = {
+  weatherWeekData: {
+    cityName: string
+    forecastday: WeatherDay[]
+  }
+  isLoading: boolean
+  error: string
+}
+
+const initialState: InitStateType = {
   weatherWeekData: {
     cityName: '',
     forecastday: [],

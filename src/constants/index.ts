@@ -1,10 +1,16 @@
-import backgroundImageWeather from '@assets/images/backgroundApp.jpg'
+import backgroundCloudy from '@assets/images/backgroundCloudy.jpg'
+import backgroundDefault from '@assets/images/backgroundDefault.jpg'
+import backgroundRainy from '@assets/images/backgroundRain.jpg'
+import backgroundSunny from '@assets/images/backgroundSunny.jpg'
 import loading from '@assets/images/loading.gif'
 
 export const realFetch = false
 
 export const image = {
-  backgroundImageWeather: backgroundImageWeather,
+  backgroundDefault: backgroundDefault,
+  backgroundSunny: backgroundSunny,
+  backgroundCloudy: backgroundCloudy,
+  backgroundRainy: backgroundRainy,
   loading: loading,
 }
 
