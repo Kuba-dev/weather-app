@@ -22,3 +22,11 @@ export const ErrorMessage = styled.p`
       fontSize: theme.font.fontSize.medium,
     })};
 `
+
+export const Title = styled.h5`
+  ${({ theme }) =>
+    defaultText({
+      color: theme.colors.primary,
+      fontSize: theme.font.fontSize.large,
+    })};
+`

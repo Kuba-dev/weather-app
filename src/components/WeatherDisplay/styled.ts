@@ -1,19 +1,11 @@
 import styled from 'styled-components'
 
-import { defaultText, positioningFlex } from '@src/style/mixins/mixins'
+import { positioningFlex } from '@src/style/mixins/mixins'
 
 export const TitleWrapper = styled.div`
   ${positioningFlex({ flexDirection: 'column' })};
 
   gap: ${({ theme }) => theme.gap.sizeM}px;
-`
-
-export const Title = styled.h5`
-  ${({ theme }) =>
-    defaultText({
-      color: theme.colors.primary,
-      fontSize: theme.font.fontSize.large,
-    })};
 `
 
 export const WeatherTodayWrapper = styled.div`
@@ -25,7 +17,7 @@ export const WeatherTodayWrapper = styled.div`
 export const WeatherDailyWrapper = styled.ul`
   ${positioningFlex({ justifyContent: 'end', alignItems: 'center' })};
 
-  max-width: 715px;
+  max-width: 750px;
   width: 100%;
   gap: ${({ theme }) => theme.gap.size3XL}px;
 `

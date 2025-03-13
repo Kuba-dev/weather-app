@@ -19,6 +19,6 @@ export const Title = styled.h6`
 `
 
 export const WeatherImage = styled.img`
-  width: ${sizeImage}px;
-  height: ${sizeImage}px;
+  min-width: ${sizeImage}px;
+  min-height: ${sizeImage}px;
 `

@@ -25,6 +25,9 @@ const calendarEventsSlice = createSlice({
     clearEvents: state => {
       state.events = []
     },
+    clearError: state => {
+      state.error = null
+    },
   },
 })
 

@@ -30,11 +30,12 @@ export default memo(function GoogleCalendar() {
   const { events, error, isLoading } = useTypedSelector(
     state => state.calendarEvents,
   )
-  const { clearEvents } = useActions()
+  const { clearEvents, clearError } = useActions()
 
   const handleClickOnSubmitModal = async () => {
     setModalOpen(false)
     await signOut()
+    clearError()
     clearEvents()
   }
   const handleClickSignIn = async () => {
@@ -72,7 +73,7 @@ export default memo(function GoogleCalendar() {
 
       <EventsList>
         {isLoading && <Loading />}
-        {error && <p>{error}</p>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         {!isAuthenticated && !error && (
           <Title>Login to your account to see your events</Title>
         )}

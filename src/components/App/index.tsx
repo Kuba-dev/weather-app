@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
+
 import { TypeWeatherConst } from '@src/constants'
-import { useWeatherType } from '@src/hooks'
+import { useFetchCityCurrentWeather, useWeatherType } from '@src/hooks'
 import Header from '@components/Header'
 import Main from '@components/Main'
 import WeatherDisplay from '@components/WeatherDisplay'
@@ -9,6 +11,10 @@ import { ContainerApp, WrapperApp } from './styled'
 
 export default function App() {
   const { typeWeather } = useWeatherType()
+  const { fetchCityCurrentWeather } = useFetchCityCurrentWeather()
+  useEffect(() => {
+    fetchCityCurrentWeather()
+  }, [fetchCityCurrentWeather])
 
   return (
     <ContainerApp>
