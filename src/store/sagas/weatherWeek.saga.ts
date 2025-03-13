@@ -24,7 +24,7 @@ export function* getWeatherWeekSaga(action: GetWeatherWeekAction): Generator {
     })
 
     const { forecast } = payload.data
-    console.log(forecast)
+
     const mockedForecast = {
       forecastday: [
         ...forecast.forecastday,
