@@ -1,4 +1,5 @@
 import { put } from 'redux-saga/effects'
+import { v4 as uuidv4 } from 'uuid'
 
 import { requestAPI } from '@src/api/fetchAPI'
 import { env } from '@src/constants'
@@ -23,9 +24,56 @@ export function* getWeatherWeekSaga(action: GetWeatherWeekAction): Generator {
     })
 
     const { forecast } = payload.data
+    console.log(forecast)
+    const mockedForecast = {
+      forecastday: [
+        ...forecast.forecastday,
+        {
+          date_epoch: uuidv4(),
+          date: '2025-03-14',
+          day: {
+            avgtemp_c: 18,
+            condition: {
+              icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+            },
+          },
+        },
+        {
+          date_epoch: uuidv4(),
+          date: '2025-03-15',
+          day: {
+            avgtemp_c: 18,
+            condition: {
+              icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+            },
+          },
+        },
+        {
+          date_epoch: uuidv4(),
+          date: '2025-03-16',
+          day: {
+            avgtemp_c: 20,
+            condition: {
+              icon: '//cdn.weatherapi.com/weather/64x64/day/116.png',
+            },
+          },
+        },
+        {
+          date_epoch: uuidv4(),
+          date: '2025-03-17',
+          day: {
+            avgtemp_c: 22,
+            condition: {
+              icon: '//cdn.weatherapi.com/weather/64x64/day/119.png',
+            },
+          },
+        },
+      ],
+    }
+
     yield put(
       weatherWeekActions.getWeatherWeekSuccess({
-        ...forecast,
+        ...mockedForecast,
         cityName,
       }),
     )
