@@ -2,25 +2,32 @@ import { image } from '@src/constants'
 import { useTypedSelector } from '@src/hooks'
 import Global from '@style/reset'
 
-export default function GlobalWithRedux() {
+export default function GlobalStyleAndBackground() {
   const weekWeather = useTypedSelector(
     state => state.weatherWeek.weatherWeekData.forecastday[0],
   )
+  const {
+    backgroundDefault,
+    backgroundCloudy,
+    backgroundRainy,
+    backgroundSunny,
+  } = image.globalBackground
+
   const typeWeather = weekWeather?.day.condition.text
-  let backgroundWeatherImage = image.backgroundDefault
+  let backgroundWeatherImage = backgroundDefault
 
   switch (typeWeather) {
     case 'Sunny':
-      backgroundWeatherImage = image.backgroundSunny
+      backgroundWeatherImage = backgroundSunny
       break
     case 'Cloudy':
-      backgroundWeatherImage = image.backgroundCloudy
+      backgroundWeatherImage = backgroundCloudy
       break
     case 'Rain':
-      backgroundWeatherImage = image.backgroundRainy
+      backgroundWeatherImage = backgroundRainy
       break
     default:
-      backgroundWeatherImage = image.backgroundDefault
+      backgroundWeatherImage = backgroundDefault
       break
   }
 

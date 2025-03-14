@@ -7,7 +7,6 @@ export default function Loading({
   position = { left: null, top: null, right: 0, bottom: 0 },
   scale = { width: 50, height: 50 },
 }: Props) {
-  return (
-    <Load src={image.loading} position={position} scale={scale} alt='loading' />
-  )
+  const { loading } = image.main
+  return <Load src={loading} position={position} scale={scale} alt='loading' />
 }

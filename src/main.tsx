@@ -4,9 +4,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
+import GlobalStyleAndBackground from '@src/components/GlobalStyleAndBackground'
 import App from '@components/App'
 import ErrorBoundary from '@components/ErrorBoundary'
-import GlobalWithRedux from '@components/GlobalWithRedux'
 
 import { store } from './store/store'
 import { baseTheme } from './style/theme'
@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={baseTheme}>
-        <GlobalWithRedux />
+        <GlobalStyleAndBackground />
         <BrowserRouter>
           <ErrorBoundary>
             <SessionContextProvider supabaseClient={supabase}>

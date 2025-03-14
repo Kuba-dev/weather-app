@@ -10,14 +10,19 @@ export enum LinksPages {
   default = '/',
   home = 'home',
   error = 'error',
+  notFound = '*',
 }
 
 export const image = {
-  backgroundDefault: backgroundDefault,
-  backgroundSunny: backgroundSunny,
-  backgroundCloudy: backgroundCloudy,
-  backgroundRainy: backgroundRainy,
-  loading: loading,
+  globalBackground: {
+    backgroundDefault: backgroundDefault,
+    backgroundSunny: backgroundSunny,
+    backgroundCloudy: backgroundCloudy,
+    backgroundRainy: backgroundRainy,
+  },
+  main: {
+    loading: loading,
+  },
 }
 
 export enum TypeWeatherConst {
