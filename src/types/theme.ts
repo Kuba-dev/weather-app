@@ -41,7 +41,14 @@ export interface ITheme {
     size4XL: number
     size5XL: number
     size6XL: number
-    size7XL: number
+  }
+
+  bigSize: {
+    sizeXXL: number
+    sizeXL: number
+    sizeL: number
+    sizeM: number
+    sizeS: number
   }
 
   media: {

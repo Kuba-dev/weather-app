@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
 export default defineConfig({
@@ -16,7 +17,7 @@ export default defineConfig({
       '@style': path.resolve(__dirname, './src/style'),
     }
   },
-  plugins: [react()],
+  plugins: [react(), tsconfigPaths()],
   build: {
     sourcemap: true,
   },

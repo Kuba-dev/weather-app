@@ -29,6 +29,17 @@ export const ModalContent = styled.div`
   border: ${({ theme }) =>
     `${theme.sizes.border.default}px solid ${theme.colors.secondary}`};
   backdrop-filter: ${({ theme }) => `blur(${theme.gap.sizeM}px)`};
+
+  @media ${({ theme }) => theme.media.medium} {
+    width: 350px;
+    height: 200px;
+    gap: ${({ theme }) => theme.gap.size3XL}px;
+  }
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    width: 250px;
+    height: 170px;
+  }
 `
 
 export const TextModal = styled.p`
@@ -39,6 +50,16 @@ export const TextModal = styled.p`
 
   text-align: center;
   margin-top: ${({ theme }) => theme.gap.size4XL}px;
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    ${({ theme }) =>
+      defaultText({
+        fontSize: theme.font.fontSize.medium,
+        color: theme.colors.primary,
+      })}
+
+    margin-top: ${({ theme }) => theme.gap.sizeXL}px;
+  }
 `
 
 export const ActionsOnModal = styled.div`

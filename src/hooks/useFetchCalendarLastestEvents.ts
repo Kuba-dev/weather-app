@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 
-import { requestAPI } from '@src/api/fetchAPI'
+import { fetchAPI } from '@src/api/fetchAPI'
 import { env } from '@src/constants'
 
 import useActions from './useActions'
@@ -26,7 +26,7 @@ export default function useFetchCalendarLastestEvents() {
     const googleCalendarUrl = `${GOOGLE_CALENDAR_URL}&timeMin=${startOfDay}&timeMax=${endOfDay}`
 
     try {
-      const response = await requestAPI(googleCalendarUrl, {
+      const response = await fetchAPI(googleCalendarUrl, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

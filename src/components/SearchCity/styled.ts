@@ -17,10 +17,16 @@ export const FormSearchCity = styled.form`
   position: relative;
   gap: ${({ theme }) => theme.gap.sizeXS}px;
   width: 300px;
+  height: 38px;
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    height: 32px;
+    width: 230px;
+  }
 `
 
 export const SearchButton = styled(Button)`
-  height: 38px;
+  height: 100%;
   width: 95px;
 `
 
@@ -38,6 +44,16 @@ export const InputCity = styled.input`
   border: ${({ theme }) => theme.sizes.border.default}px solid
     ${({ theme }) => theme.colors.primary};
   padding: ${({ theme }) => theme.gap.sizeXS}px;
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    ${({ theme }) =>
+      defaultText({
+        color: theme.colors.primary,
+        fontSize: theme.font.fontSize.small,
+      })};
+
+    width: 130px;
+  }
 `
 
 export const CityList = styled.ul`
@@ -55,6 +71,18 @@ export const CityList = styled.ul`
   width: 200px;
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.gap.sizeXS}px;
+  z-index: ${({ theme }) => theme.zIndex.l};
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    ${({ theme }) =>
+      defaultText({
+        color: theme.colors.primary,
+        fontSize: theme.font.fontSize.small,
+      })}
+
+    width: 130px;
+    transform: translateY(32px);
+  }
 `
 
 export const CityItem = styled.li`

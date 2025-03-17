@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 
-import { requestAPI } from '@src/api/fetchAPI'
+import { fetchAPI } from '@src/api/fetchAPI'
 import { env } from '@src/constants'
 import { useActions } from '@src/hooks'
 import { getWeatherWeek } from '@src/store/weatherWeek/weatherWeek.slice'
@@ -14,7 +14,7 @@ export default function useFetchCityCurrentWeather() {
 
   const successGetCurrentCity = async (position: Position) => {
     const { latitude, longitude } = position.coords
-    const response = await requestAPI(
+    const response = await fetchAPI(
       `${CITY_SEARCH_BY_COORDINATE}?lat=${latitude}&lon=${longitude}&type=city&lang=en&limit=1&format=json&apiKey=${CITY_AUTOCOMPLETE_API}`,
     )
     const { city } = response.data.results[0]

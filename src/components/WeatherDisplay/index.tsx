@@ -70,8 +70,8 @@ export default memo(function WeatherDisplay() {
 
   return (
     <Wrapper>
-      <WeatherTodayDisplay />
       <WeatherDailyWrapper>
+        <WeatherTodayDisplay />
         {weekWeather.map(data => {
           const { date_epoch, date, avgtemp_c, icon } = flattenWeatherData(data)
           return (

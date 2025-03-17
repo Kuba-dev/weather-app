@@ -15,6 +15,10 @@ export const WrapperActionButton = styled.div`
 
   width: 300px;
   gap: ${({ theme }) => theme.gap.size3XL}px;
+
+  @media ${({ theme }) => theme.media.extraLarge} {
+    display: none;
+  }
 `
 
 export const ActionButton = styled(Button)`

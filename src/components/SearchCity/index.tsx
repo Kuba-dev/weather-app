@@ -2,9 +2,10 @@ import { ChangeEvent, memo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
-import { requestAPI } from '@src/api/fetchAPI'
-import { env } from '@src/constants'
+import { fetchAPI } from '@src/api/fetchAPI'
+import { env, ErrorCodeGeoposition } from '@src/constants'
 import { useActions, useDebounce, useTypedSelector } from '@src/hooks'
+import { сurrentCityActions } from '@src/store/loadingCurrentCity/loadingCurrentCity.slice'
 import { getWeatherWeek } from '@src/store/weatherWeek/weatherWeek.slice'
 
 import Loading from '../Loading'
@@ -50,7 +51,7 @@ export default memo(function SearchCity() {
     }
 
     try {
-      const response = await requestAPI(
+      const response = await fetchAPI(
         `${CITY_SEARCH_URL}/search?name=${cityName}&lang=en&limit=1&type=city&format=json&apiKey=${CITY_AUTOCOMPLETE_API}`,
       )
       const [results] = response.data.results
@@ -61,6 +62,11 @@ export default memo(function SearchCity() {
       }
 
       dispatch(getWeatherWeek(coordinates))
+      dispatch(
+        сurrentCityActions.setCodeErrorCurrentCity(
+          ErrorCodeGeoposition.DEFAULT,
+        ),
+      )
     } catch (error) {
       if (error instanceof Error) {
         setErrorElasticSearch('City is not found')
@@ -87,7 +93,7 @@ export default memo(function SearchCity() {
       return
     }
 
-    const response = await requestAPI(
+    const response = await fetchAPI(
       `${CITY_AUTOCOMPLETE_URL}?text=${valueFirstCharUpper}&lang=en&limit=5&type=city&format=json&apiKey=${CITY_AUTOCOMPLETE_API}`,
     )
 
