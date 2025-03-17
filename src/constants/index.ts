@@ -13,7 +13,7 @@ import loading from '@assets/images/loading.gif'
 const Home = lazy(() => import('@src/page/Home'))
 const ErrorPage = lazy(() => import('@src/page/Error'))
 
-export const realFetch = false
+export const realFetch = true
 
 export const pageList = [
   { id: 1, href: 'home', Page: Home },
