@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
 
-export const weatherWeekMock = {
+import { WeatherDay } from '@src/components/WeatherDisplay/types'
+
+export const weatherWeekMock: { forecastday: WeatherDay[] } = {
   forecastday: [
     {
       date_epoch: uuidv4(),
@@ -8,6 +10,7 @@ export const weatherWeekMock = {
       day: {
         avgtemp_c: 18,
         condition: {
+          text: 'Sunny',
           icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
         },
       },
@@ -27,8 +30,10 @@ export const weatherWeekMock = {
         avgtemp_c: 18,
         condition: {
           icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+          text: '',
         },
       },
+      hour: [],
     },
     {
       date_epoch: uuidv4(),
@@ -37,8 +42,10 @@ export const weatherWeekMock = {
         avgtemp_c: 20,
         condition: {
           icon: '//cdn.weatherapi.com/weather/64x64/day/116.png',
+          text: '',
         },
       },
+      hour: [],
     },
     {
       date_epoch: uuidv4(),
@@ -47,8 +54,10 @@ export const weatherWeekMock = {
         avgtemp_c: 22,
         condition: {
           icon: '//cdn.weatherapi.com/weather/64x64/day/119.png',
+          text: '',
         },
       },
+      hour: [],
     },
     {
       date_epoch: uuidv4(),
@@ -57,8 +66,10 @@ export const weatherWeekMock = {
         avgtemp_c: 16,
         condition: {
           icon: '//cdn.weatherapi.com/weather/64x64/day/116.png',
+          text: '',
         },
       },
+      hour: [],
     },
     {
       date_epoch: uuidv4(),
@@ -67,8 +78,10 @@ export const weatherWeekMock = {
         avgtemp_c: 19,
         condition: {
           icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+          text: '',
         },
       },
+      hour: [],
     },
     {
       date_epoch: uuidv4(),
@@ -77,8 +90,10 @@ export const weatherWeekMock = {
         avgtemp_c: 21,
         condition: {
           icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+          text: '',
         },
       },
+      hour: [],
     },
   ],
 }

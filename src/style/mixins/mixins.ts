@@ -47,6 +47,13 @@ export const defaultShadow = () => `
   }
 `
 
+export const backgroundBlured = () => `
+  background-color: ${baseTheme.colors.translucent};
+  backdrop-filter: blur(15px);
+  height: 100%;
+  width: 100%;
+`
+
 export const Button = styled.button`
   ${defaultText({})}
 

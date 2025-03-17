@@ -9,7 +9,7 @@ import { Position } from './types'
 
 export default function useFetchCityCurrentWeather() {
   const dispatch = useDispatch()
-  const { setLoadingCurrentCity } = useActions()
+  const { setLoadingCurrentCity, setCodeErrorCurrentCity } = useActions()
   const { CITY_SEARCH_BY_COORDINATE, CITY_AUTOCOMPLETE_API } = env
 
   const successGetCurrentCity = async (position: Position) => {
@@ -22,7 +22,9 @@ export default function useFetchCityCurrentWeather() {
     setLoadingCurrentCity(false)
   }
 
-  const errorGetCurrentCity = () => {
+  const errorGetCurrentCity = (error: GeolocationPositionError) => {
+    setCodeErrorCurrentCity(error.code)
+
     setLoadingCurrentCity(false)
   }
 

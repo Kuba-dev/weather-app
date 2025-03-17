@@ -1,5 +1,6 @@
 import { memo } from 'react'
 
+import { ErrorCodeGeoposition } from '@src/constants'
 import { useTypedSelector } from '@src/hooks'
 import { Title, Wrapper } from '@src/style/shared'
 import { getDayOfWeek } from '@src/utils/getDayOfWeek'
@@ -16,28 +17,51 @@ export default memo(function WeatherDisplay() {
   const {
     isLoading,
     error,
-    weatherWeekData: { forecastday, cityName },
+    weatherWeekData: { forecastday },
   }: WeatherData = useTypedSelector(state => state.weatherWeek)
-  const isLoadingCurrentCity = useTypedSelector(
-    state => state.isLoadingCurrentCity,
-  )
+  const currentCity = useTypedSelector(state => state.currentCity)
 
-  if (
-    isLoading ||
-    isLoadingCurrentCity.isLoading ||
-    !forecastday ||
-    !cityName ||
-    error
-  ) {
+  if (error) {
     return (
       <Wrapper>
-        {(isLoading || isLoadingCurrentCity.isLoading) && <Loading />}
-        {(!forecastday || !cityName) &&
-          !(isLoading || isLoadingCurrentCity.isLoading) &&
-          !error && (
-            <Title>Find the city in which you want to know the weather</Title>
-          )}
-        {error && <Title>{error}</Title>}
+        <Title>{error}</Title>
+      </Wrapper>
+    )
+  }
+
+  switch (currentCity.errorCode) {
+    case ErrorCodeGeoposition.PERMISSION_DENIED: {
+      return (
+        <Wrapper>
+          <Title>
+            Please allow location access to get the current weather.
+          </Title>
+        </Wrapper>
+      )
+    }
+    case ErrorCodeGeoposition.POSITION_UNAVAILABLE: {
+      return (
+        <Wrapper>
+          <Title>Unable to get your current location.</Title>
+        </Wrapper>
+      )
+    }
+    case ErrorCodeGeoposition.TIMEOUT: {
+      return (
+        <Wrapper>
+          <Title>Location request timed out.</Title>
+        </Wrapper>
+      )
+    }
+    default: {
+      break
+    }
+  }
+
+  if (isLoading || currentCity.isLoading) {
+    return (
+      <Wrapper>
+        <Loading />
       </Wrapper>
     )
   }
