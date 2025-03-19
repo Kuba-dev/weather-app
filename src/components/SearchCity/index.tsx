@@ -3,8 +3,9 @@ import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
 import { requestAPI } from '@src/api/fetchAPI'
-import { env } from '@src/constants'
+import { env, ErrorCodeGeoposition } from '@src/constants'
 import { useActions, useDebounce, useTypedSelector } from '@src/hooks'
+import { сurrentCityActions } from '@src/store/loadingCurrentCity/loadingCurrentCity.slice'
 import { getWeatherWeek } from '@src/store/weatherWeek/weatherWeek.slice'
 
 import Loading from '../Loading'
@@ -61,6 +62,11 @@ export default memo(function SearchCity() {
       }
 
       dispatch(getWeatherWeek(coordinates))
+      dispatch(
+        сurrentCityActions.setCodeErrorCurrentCity(
+          ErrorCodeGeoposition.DEFAULT,
+        ),
+      )
     } catch (error) {
       if (error instanceof Error) {
         setErrorElasticSearch('City is not found')
