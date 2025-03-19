@@ -66,7 +66,7 @@ export const Title = styled.p`
       color: theme.colors.primary,
     })}
 
-  word-break: break-all;
+  word-break: break-word;
 
   @media ${({ theme }) => theme.media.verySmall} {
     ${({ theme }) =>
