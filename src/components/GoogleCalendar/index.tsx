@@ -65,7 +65,6 @@ export default memo(function GoogleCalendar() {
   return (
     <Wrapper>
       <AuthActionsWrapper>
-        {`${isAuthenticated}`}
         {isAuthenticated ? (
           <AuthButton onClick={handleClickOpenModal}>Sign Out</AuthButton>
         ) : (

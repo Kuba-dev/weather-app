@@ -4,15 +4,24 @@ import { Button, defaultText, positioningFlex } from '@src/style/mixins/mixins'
 
 export const Wrapper = styled.div`
   @media ${({ theme }) => theme.media.extraLarge} {
+    ${positioningFlex({
+      alignItems: 'center',
+      flexDirection: '',
+      justifyContent: 'space-between',
+    })}
+
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     gap: ${({ theme }) => theme.gap.sizeXL}px;
   }
 `
 
 export const AuthActionsWrapper = styled.div`
+  ${positioningFlex({
+    alignItems: 'end',
+    flexDirection: 'column',
+    justifyContent: '',
+  })}
+
   margin-bottom: ${({ theme }) => theme.gap.size3XL}px;
 
   @media ${({ theme }) => theme.media.extraLarge} {

@@ -1,63 +1,59 @@
 import { calendarEventsActions } from '@store/calendarEvents/calendarEvents.slice'
 import { stateAuthenticatedActions } from '@store/isAuthenticated/isAuthenticated.slice'
-import { useAuthentication } from '@src/hooks';
 
 describe('Сhecking different scenarios', () => {
   beforeEach(function () {
     cy.loginByGoogleApi()
   })
 
-  // it('Search for an existing city', () => {
-  //   cy.intercept('GET', '**/geocode/autocomplete*', {
-  //     fixture: 'cityList.json',
-  //   })
-  //   cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
-
-  //   cy.visit('http://localhost:5173')
-
-  //   cy.get('input[name="city"]').type('Mins')
-  //   cy.contains('Minsk').click()
-  // })
-
-  // it('Search for a non-existent city', () => {
-  //   cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
-
-  //   cy.visit('http://localhost:5173')
-  //   cy.get('input[name="city"]').type('Masdokyadfoupaifppoidfsin')
-  //   cy.contains('Nothing found')
-  // })
-
-  // it('Error in city search', () => {
-  //   cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
-  //   cy.intercept('GET', '**/forecast.json*', { statusCode: 500 })
-  //   cy.visit('http://localhost:5173')
-
-  //   cy.get('input[name="city"]').type('Minsk')
-  //   cy.contains('Minsk').click()
-  //   cy.get('button[type="submit"]').click()
-  // })
-
-  // it('Successful city search', () => {
-  //   cy.intercept('GET', '**/geocode/autocomplete*', {
-  //     fixture: 'cityList.json',
-  //   })
-  //   cy.intercept('GET', '**/forecast.json*', { fixture: 'weather.json' })
-  //   cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
-  //   cy.visit('http://localhost:5173')
-  //   cy.get('input[name="city"]').type('Minsk')
-  //   cy.contains('Minsk').click()
-  //   cy.get('button[type="submit"]').click()
-
-  //   cy.contains('Today')
-  // })
-
-  it('Should render a list of events', () => {
-    const mockHook = useAuthentication()
-    console.log(mockHook)
-    cy.stub(mockHook, 'signIn').as('signInStub')
-    cy.stub(mockHook, 'signOut').as('signOutStub')
+  it('Search for an existing city', () => {
+    cy.intercept('GET', '**/geocode/autocomplete*', {
+      fixture: 'cityList.json',
+    })
+    cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
 
     cy.visit('http://localhost:5173')
+
+    cy.get('input[name="city"]').type('Mins')
+    cy.contains('Minsk').click()
+  })
+
+  it('Search for a non-existent city', () => {
+    cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
+
+    cy.visit('http://localhost:5173')
+    cy.get('input[name="city"]').type('Masdokyadfoupaifppoidfsin')
+    cy.contains('Nothing found')
+  })
+
+  it('Error in city search', () => {
+    cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
+    cy.intercept('GET', '**/forecast.json*', { statusCode: 500 })
+    cy.visit('http://localhost:5173')
+
+    cy.get('input[name="city"]').type('Minsk')
+    cy.contains('Minsk').click()
+    cy.get('button[type="submit"]').click()
+  })
+
+  it('Successful city search', () => {
+    cy.intercept('GET', '**/geocode/autocomplete*', {
+      fixture: 'cityList.json',
+    })
+    cy.intercept('GET', '**/forecast.json*', { fixture: 'weather.json' })
+    cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
+    cy.visit('http://localhost:5173')
+    cy.get('input[name="city"]').type('Minsk')
+    cy.contains('Minsk').click()
+    cy.get('button[type="submit"]').click()
+
+    cy.contains('Today')
+  })
+
+  it('Should render a list of events', () => {
+    cy.visit('http://localhost:5173')
+
+    cy.signInAndAuthenticate()
 
     cy.window()
       .its('Cypress.store')
@@ -82,15 +78,27 @@ describe('Сhecking different scenarios', () => {
         ]),
       )
 
-    cy.window()
-      .its('Cypress.store')
-      .invoke('dispatch', stateAuthenticatedActions.setIsAuthenticated(true))
+    cy.contains('Events3')
+
+    cy.contains('Sign Out').click()
+    cy.contains('Yes').click()
+    cy.contains('Sign In')
+  })
+
+  it('Should no render events list and should display error', () => {
+    cy.visit('http://localhost:5173')
+
+    cy.signInAndAuthenticate()
 
     cy.window()
       .its('Cypress.store')
-      .invoke('getState')
-      .then(state => {
-        console.log(state)
-      })
+      .invoke(
+        'dispatch',
+        stateAuthenticatedActions.setAuthenticatedError(
+          new Error('An unknown error occurred'),
+        ),
+      )
+
+    cy.contains('An unknown error occurred')
   })
 })

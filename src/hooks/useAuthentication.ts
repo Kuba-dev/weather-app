@@ -14,6 +14,10 @@ export default function useAuthentication() {
 
   const signIn = useCallback(
     async function () {
+      if (typeof Cypress !== 'undefined' && Cypress.env('test')) {
+        return
+      }
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -48,6 +52,10 @@ export default function useAuthentication() {
   )
 
   useEffect(() => {
+    if (typeof Cypress !== 'undefined' && Cypress.env('test')) {
+      return
+    }
+
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_, session) => {
         if (session?.user) {

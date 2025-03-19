@@ -9,8 +9,4 @@
       "allowJs": true,
       "noEmit": true,
     },
-    "paths": {
-      "@src/hooks/*": ["src/hooks/*"],
-      "@src/hooks/useAuthentication": ["cypress/mocks/useAuthenticationMock"]
-    }
 }

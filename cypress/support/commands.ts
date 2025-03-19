@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { stateAuthenticatedActions } from "@src/store/isAuthenticated/isAuthenticated.slice"
+
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -74,3 +76,10 @@ Cypress.Commands.add('loginByGoogleApi', () => {
     })
   })
 })
+
+Cypress.Commands.add('signInAndAuthenticate', () => {
+  cy.contains('Sign In').click();
+  cy.window()
+    .its('Cypress.store')
+    .invoke('dispatch', stateAuthenticatedActions.setIsAuthenticated(true));
+});

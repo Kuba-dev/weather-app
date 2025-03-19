@@ -118,7 +118,6 @@ export default memo(function SearchCity() {
   const handleFocus = () => {
     setFocusElasticSearch(true)
   }
-  console.log(cityList)
 
   return (
     <>

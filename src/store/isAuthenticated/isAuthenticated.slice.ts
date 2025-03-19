@@ -3,7 +3,7 @@ import { IsAuth } from './types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: IsAuth = {
-  isAuthenticated: true,
+  isAuthenticated: false,
   authenticatedError: null,
 }
 
