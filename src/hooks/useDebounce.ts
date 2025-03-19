@@ -1,7 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useRef } from 'react'
 
 type Timer = number | null
-// type SomeFunction = (...args: unknown[]) => void
 type SomeFunction = (event: ChangeEvent<HTMLFormElement>) => void
 
 export default function useDebounce<Func extends SomeFunction>(

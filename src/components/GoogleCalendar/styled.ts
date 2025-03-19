@@ -2,6 +2,14 @@ import styled from 'styled-components'
 
 import { Button, defaultText, positioningFlex } from '@src/style/mixins/mixins'
 
+const sizeButton = {
+  XXL: `150px`,
+  XL: `100px`,
+  L: `80px`,
+  M: `38px`,
+  S: `32px`,
+}
+
 export const Wrapper = styled.div`
   @media ${({ theme }) => theme.media.extraLarge} {
     ${positioningFlex({
@@ -32,18 +40,18 @@ export const AuthActionsWrapper = styled.div`
 
 export const AuthButton = styled(Button)`
   @media ${({ theme }) => theme.media.medium} {
-    width: 100px;
-    height: 38px;
+    width: ${sizeButton.XL};
+    height: ${sizeButton.M};
   }
 
   @media ${({ theme }) => theme.media.verySmall} {
-    width: 80px;
-    height: 32px;
+    width: ${sizeButton.L};
+    height: ${sizeButton.S};
   }
 `
 
 export const EventsList = styled.ul`
-  min-height: 150px;
+  min-height: ${sizeButton.XXL};
   position: relative;
 
   ${positioningFlex({

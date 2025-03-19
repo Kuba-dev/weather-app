@@ -2,6 +2,15 @@ import styled from 'styled-components'
 
 import { Button, defaultText, positioningFlex } from '@style/mixins/mixins'
 
+const modalSize = {
+  XXL: `400px`,
+  XL: `350px`,
+  L: `250px`,
+  M: `230px`,
+  S: `200px`,
+  XS: `170px`,
+}
+
 export const Modal = styled.div`
   position: fixed;
   top: 0;
@@ -21,8 +30,8 @@ export const ModalContent = styled.div`
     alignItems: 'normal',
   })}
 
-  width: 400px;
-  height: 230px;
+  width: ${modalSize.XXL};
+  height: ${modalSize.M};
   background-color: ${({ theme }) => theme.colors.translucentSecondary};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.default}px;
   gap: ${({ theme }) => theme.gap.size4XL}px;
@@ -31,14 +40,14 @@ export const ModalContent = styled.div`
   backdrop-filter: ${({ theme }) => `blur(${theme.gap.sizeM}px)`};
 
   @media ${({ theme }) => theme.media.medium} {
-    width: 350px;
-    height: 200px;
+    width: ${modalSize.XL};
+    height: ${modalSize.S};
     gap: ${({ theme }) => theme.gap.size3XL}px;
   }
 
   @media ${({ theme }) => theme.media.verySmall} {
-    width: 250px;
-    height: 170px;
+    width: ${modalSize.L};
+    height: ${modalSize.XS};
   }
 `
 

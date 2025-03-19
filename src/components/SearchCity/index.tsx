@@ -118,6 +118,7 @@ export default memo(function SearchCity() {
   const handleFocus = () => {
     setFocusElasticSearch(true)
   }
+  throw new Error('sad')
 
   return (
     <>

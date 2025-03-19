@@ -7,6 +7,16 @@ import {
   positioningFlex,
 } from '@src/style/mixins/mixins'
 
+const totalSize = {
+  size3XL: `300px`,
+  size2XL: `230px`,
+  sizeXL: `200px`,
+  sizeL: `130px`,
+  sizeM: `95px`,
+  sizeS: `38px`,
+  sizeXS: `32px`,
+}
+
 export const FormSearchCity = styled.form`
   ${positioningFlex({
     flexDirection: 'row',
@@ -16,18 +26,18 @@ export const FormSearchCity = styled.form`
 
   position: relative;
   gap: ${({ theme }) => theme.gap.sizeXS}px;
-  width: 300px;
-  height: 38px;
+  width: ${totalSize.size3XL};
+  height: ${totalSize.sizeS};
 
   @media ${({ theme }) => theme.media.verySmall} {
-    height: 32px;
-    width: 230px;
+    width: ${totalSize.size2XL};
+    height: ${totalSize.sizeXS};
   }
 `
 
 export const SearchButton = styled(Button)`
   height: 100%;
-  width: 95px;
+  width: ${totalSize.sizeM};
 `
 
 export const InputCity = styled.input`
@@ -38,7 +48,7 @@ export const InputCity = styled.input`
     })};
 
   width: 100%;
-  width: 200px;
+  width: ${totalSize.sizeXL};
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.default}px;
   border: ${({ theme }) => theme.sizes.border.default}px solid
@@ -52,7 +62,7 @@ export const InputCity = styled.input`
         fontSize: theme.font.fontSize.small,
       })};
 
-    width: 130px;
+    width: ${totalSize.sizeL};
   }
 `
 
@@ -67,8 +77,8 @@ export const CityList = styled.ul`
   position: absolute;
   top: 0px;
   left: 0px;
-  transform: translateY(38px);
-  width: 200px;
+  transform: ${`translateY(${totalSize.sizeS})`};
+  width: ${totalSize.sizeXL};
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: ${({ theme }) => theme.gap.sizeXS}px;
   z-index: ${({ theme }) => theme.zIndex.l};
@@ -80,8 +90,8 @@ export const CityList = styled.ul`
         fontSize: theme.font.fontSize.small,
       })}
 
-    width: 130px;
-    transform: translateY(32px);
+    width: ${totalSize.sizeL};
+    transform: ${`translateY(${totalSize.sizeXS})`};
   }
 `
 
