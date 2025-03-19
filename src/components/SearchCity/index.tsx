@@ -142,6 +142,7 @@ export default memo(function SearchCity() {
         {isFocused && (
           <CityList>
             {cityList.map(({ city, id }) => {
+              if (city === undefined) return
               return (
                 <CityItem key={id}>
                   <CitySelect
