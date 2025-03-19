@@ -18,7 +18,7 @@
     "removeComments": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["jest"],  
+    "types": ["jest", "cypress"],  
     "paths": {
       "@src/*": ["./src/*"],
       "@public/*": ["./public/*"],

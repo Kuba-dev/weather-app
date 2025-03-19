@@ -38,7 +38,7 @@ export const EventsList = styled.ul`
   position: relative;
 
   ${positioningFlex({
-    alignItems: 'center',
+    alignItems: 'start',
     flexDirection: 'column',
     justifyContent: 'start',
   })}

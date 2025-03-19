@@ -118,6 +118,7 @@ export default memo(function SearchCity() {
   const handleFocus = () => {
     setFocusElasticSearch(true)
   }
+  console.log(cityList)
 
   return (
     <>
@@ -148,6 +149,7 @@ export default memo(function SearchCity() {
         {isFocused && (
           <CityList>
             {cityList.map(({ city, id }) => {
+              if (!city) return
               return (
                 <CityItem key={id}>
                   <CitySelect

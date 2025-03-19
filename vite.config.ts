@@ -15,6 +15,7 @@ export default defineConfig({
       '@store': path.resolve(__dirname, './src/store'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@style': path.resolve(__dirname, './src/style'),
+      '@src/hooks/useAuthentication': '/absolute/path/to/src/hooks/useAuthenticationMock'
     }
   },
   plugins: [react(), tsconfigPaths()],
