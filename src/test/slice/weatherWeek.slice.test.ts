@@ -5,6 +5,8 @@ import {
   weatherWeekReducer,
 } from '@src/store/weatherWeek/weatherWeek.slice'
 
+import { cityInfo, weatherWeekPayload } from '../constants'
+
 describe('weatherWeek slice', () => {
   const initialState = {
     weatherWeekData: {
@@ -24,15 +26,11 @@ describe('weatherWeek slice', () => {
   })
 
   it('should update weatherWeekData and set isLoading to false on getWeatherWeekSuccess', () => {
-    const mockPayload = {
-      cityName: 'Minsk',
-      forecastday: [{ date: '2025-03-16', temp: 22 }],
-    }
     const nextState = weatherWeekReducer(
       initialState,
-      weatherWeekActions.getWeatherWeekSuccess(mockPayload),
+      weatherWeekActions.getWeatherWeekSuccess(weatherWeekPayload),
     )
-    expect(nextState.weatherWeekData).toEqual(mockPayload)
+    expect(nextState.weatherWeekData).toEqual(weatherWeekPayload)
     expect(nextState.isLoading).toBe(false)
   })
 
@@ -47,10 +45,9 @@ describe('weatherWeek slice', () => {
   })
 
   it('should create a correct custom action for getWeatherWeek', () => {
-    const customPayload = { lat: 20, lon: 20, cityName: 'Minsk' }
-    const action = getWeatherWeek(customPayload)
+    const action = getWeatherWeek(cityInfo)
 
     expect(action.type).toBe(GET_WEATHER_WEEK)
-    expect(action.payload).toEqual(customPayload)
+    expect(action.payload).toEqual(cityInfo)
   })
 })

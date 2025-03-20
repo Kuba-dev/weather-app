@@ -1,5 +1,6 @@
 import { calendarEventsActions } from '@store/calendarEvents/calendarEvents.slice'
 import { stateAuthenticatedActions } from '@store/isAuthenticated/isAuthenticated.slice'
+import { eventList, linkOnPage } from 'cypress/constants'
 
 describe('Сhecking different scenarios', () => {
   beforeEach(function () {
@@ -12,7 +13,7 @@ describe('Сhecking different scenarios', () => {
     })
     cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
 
-    cy.visit('http://localhost:5173')
+    cy.visit(linkOnPage)
 
     cy.get('input[name="city"]').type('Mins')
     cy.contains('Minsk').click()
@@ -21,7 +22,7 @@ describe('Сhecking different scenarios', () => {
   it('Search for a non-existent city', () => {
     cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
 
-    cy.visit('http://localhost:5173')
+    cy.visit(linkOnPage)
     cy.get('input[name="city"]').type('Masdokyadfoupaifppoidfsin')
     cy.contains('Nothing found')
   })
@@ -29,7 +30,7 @@ describe('Сhecking different scenarios', () => {
   it('Error in city search', () => {
     cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
     cy.intercept('GET', '**/forecast.json*', { statusCode: 500 })
-    cy.visit('http://localhost:5173')
+    cy.visit(linkOnPage)
 
     cy.get('input[name="city"]').type('Minsk')
     cy.contains('Minsk').click()
@@ -42,41 +43,28 @@ describe('Сhecking different scenarios', () => {
     })
     cy.intercept('GET', '**/forecast.json*', { fixture: 'weather.json' })
     cy.intercept('GET', '**/geocode/search*', { fixture: 'searchCity.json' })
-    cy.visit('http://localhost:5173')
+    cy.visit(linkOnPage)
     cy.get('input[name="city"]').type('Minsk')
     cy.contains('Minsk').click()
     cy.get('button[type="submit"]').click()
 
     cy.contains('Today')
+    cy.contains('0')
+    cy.contains('Saturday')
+
+    cy.contains('Hourly').click()
+    cy.contains('00:00')
+    cy.contains('-1')
   })
 
   it('Should render a list of events', () => {
-    cy.visit('http://localhost:5173')
+    cy.visit(linkOnPage)
 
     cy.signInAndAuthenticate()
 
     cy.window()
       .its('Cypress.store')
-      .invoke(
-        'dispatch',
-        calendarEventsActions.fetchEventsSuccess([
-          {
-            id: 1,
-            summary: 'Events1',
-            start: { dateTime: '2025-03-18T17:30:00+03:00' },
-          },
-          {
-            id: 2,
-            summary: 'Events2',
-            start: { dateTime: '2025-03-18T18:30:00+03:00' },
-          },
-          {
-            id: 3,
-            summary: 'Events3',
-            start: { dateTime: '2025-03-18T18:30:00+03:00' },
-          },
-        ]),
-      )
+      .invoke('dispatch', calendarEventsActions.fetchEventsSuccess(eventList))
 
     cy.contains('Events3')
 
@@ -86,7 +74,7 @@ describe('Сhecking different scenarios', () => {
   })
 
   it('Should no render events list and should display error', () => {
-    cy.visit('http://localhost:5173')
+    cy.visit(linkOnPage)
 
     cy.signInAndAuthenticate()
 
@@ -100,5 +88,18 @@ describe('Сhecking different scenarios', () => {
       )
 
     cy.contains('An unknown error occurred')
+  })
+
+  it('Should throw an error when there is an error receiving events', () => {
+    cy.visit(linkOnPage)
+
+    cy.signInAndAuthenticate()
+
+    cy.window()
+      .its('Cypress.store')
+      .invoke(
+        'dispatch',
+        calendarEventsActions.fetchEventsFailure('An unknown error occurred'),
+      )
   })
 })

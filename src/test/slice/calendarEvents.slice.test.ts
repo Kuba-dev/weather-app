@@ -3,6 +3,8 @@ import {
   calendarEventsReducer,
 } from '@src/store/calendarEvents/calendarEvents.slice'
 
+import { eventList } from '../constants'
+
 describe('calendarEvents slice', () => {
   const initialState = {
     events: [],
@@ -20,23 +22,11 @@ describe('calendarEvents slice', () => {
   })
 
   it('should update events and set isLoading to false on fetchEventsSuccess', () => {
-    const mockEvents = [
-      {
-        id: 1,
-        summary: 'Go to walk',
-        start: `2994-12-32 12:00`,
-      },
-      {
-        id: 2,
-        summary: 'Buy groceries',
-        start: `2994-12-31 13:00`,
-      },
-    ]
     const nextState = calendarEventsReducer(
       initialState,
-      calendarEventsActions.fetchEventsSuccess(mockEvents),
+      calendarEventsActions.fetchEventsSuccess(eventList),
     )
-    expect(nextState.events).toEqual(mockEvents)
+    expect(nextState.events).toEqual(eventList)
     expect(nextState.isLoading).toBe(false)
     expect(nextState.error).toBeNull()
   })
@@ -55,13 +45,7 @@ describe('calendarEvents slice', () => {
   it('should clear all events on clearEvents', () => {
     const mockState = {
       ...initialState,
-      events: [
-        {
-          id: 1,
-          summary: 'Go to walk',
-          start: `2994-12-32 12:00`,
-        },
-      ],
+      events: eventList,
     }
     const nextState = calendarEventsReducer(
       mockState,

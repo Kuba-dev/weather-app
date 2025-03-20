@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
       justifyContent: 'space-between',
     })}
 
+    width: 100%;
     gap: ${({ theme }) => theme.gap.sizeXL}px;
   }
 `

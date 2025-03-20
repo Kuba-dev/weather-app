@@ -2,7 +2,9 @@ import {
   stateElasticSearchActions,
   stateElasticSearchReducer,
 } from '@src/store/stateElasticSearch/stateElasticSearch.slice'
-import { City, StateElasticSearch } from '@src/store/stateElasticSearch/types'
+import { StateElasticSearch } from '@src/store/stateElasticSearch/types'
+
+import { cityList } from '../constants'
 
 describe('stateElasticSearch slice', () => {
   const initialState: StateElasticSearch = {
@@ -40,16 +42,11 @@ describe('stateElasticSearch slice', () => {
   })
 
   it('should set cityList', () => {
-    const mockCityList: City[] = [
-      { city: 'Minsk', id: 1 },
-      { city: 'Moscow', id: 2 },
-    ]
-
     const nextState = stateElasticSearchReducer(
       initialState,
-      stateElasticSearchActions.setCityListElasticSearch(mockCityList),
+      stateElasticSearchActions.setCityListElasticSearch(cityList),
     )
 
-    expect(nextState.cityList).toEqual(mockCityList)
+    expect(nextState.cityList).toEqual(cityList)
   })
 })

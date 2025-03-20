@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { fetchAPI } from '@src/api/fetchAPI'
@@ -12,29 +13,42 @@ export default function useFetchCityCurrentWeather() {
   const { setLoadingCurrentCity, setCodeErrorCurrentCity } = useActions()
   const { CITY_SEARCH_BY_COORDINATE, CITY_AUTOCOMPLETE_API } = env
 
-  const successGetCurrentCity = async (position: Position) => {
-    const { latitude, longitude } = position.coords
-    const response = await fetchAPI(
-      `${CITY_SEARCH_BY_COORDINATE}?lat=${latitude}&lon=${longitude}&type=city&lang=en&limit=1&format=json&apiKey=${CITY_AUTOCOMPLETE_API}`,
-    )
-    const { city } = response.data.results[0]
-    dispatch(getWeatherWeek({ lat: latitude, lon: longitude, cityName: city }))
-    setLoadingCurrentCity(false)
-  }
+  const successGetCurrentCity = useCallback(
+    async (position: Position) => {
+      const { latitude, longitude } = position.coords
+      const response = await fetchAPI(
+        `${CITY_SEARCH_BY_COORDINATE}?lat=${latitude}&lon=${longitude}&type=city&lang=en&limit=1&format=json&apiKey=${CITY_AUTOCOMPLETE_API}`,
+      )
+      const { city } = response.data.results[0]
+      dispatch(
+        getWeatherWeek({ lat: latitude, lon: longitude, cityName: city }),
+      )
+      setLoadingCurrentCity(false)
+    },
+    [
+      dispatch,
+      CITY_SEARCH_BY_COORDINATE,
+      CITY_AUTOCOMPLETE_API,
+      setLoadingCurrentCity,
+    ],
+  )
 
-  const errorGetCurrentCity = (error: GeolocationPositionError) => {
-    setCodeErrorCurrentCity(error.code)
+  const errorGetCurrentCity = useCallback(
+    (error: GeolocationPositionError) => {
+      setCodeErrorCurrentCity(error.code)
 
-    setLoadingCurrentCity(false)
-  }
+      setLoadingCurrentCity(false)
+    },
+    [setCodeErrorCurrentCity, setLoadingCurrentCity],
+  )
 
-  const fetchCityCurrentWeather = () => {
+  const fetchCityCurrentWeather = useCallback(() => {
     window.navigator.geolocation.getCurrentPosition(
       successGetCurrentCity,
       errorGetCurrentCity,
       { timeout: 10000 },
     )
-  }
+  }, [errorGetCurrentCity, successGetCurrentCity])
 
   return { fetchCityCurrentWeather }
 }

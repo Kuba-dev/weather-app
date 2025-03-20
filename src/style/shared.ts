@@ -9,6 +9,7 @@ const paddingGap = {
 export const Wrapper = styled.section`
   ${positioningFlex({ justifyContent: 'center', alignItems: 'center' })};
 
+  gap: ${({ theme }) => theme.gap.sizeS}px;
   min-height: 215px;
   background-color: ${({ theme }) => theme.colors.translucentSecondary};
   backdrop-filter: blur(15px);

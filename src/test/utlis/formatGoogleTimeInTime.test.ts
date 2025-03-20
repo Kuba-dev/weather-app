@@ -1,9 +1,13 @@
 import { formatGoogleTimeInTime } from '@src/utils/formatGoogleTimeInTime'
 
+import { typesOfTime } from '../constants'
+
+const { isoDate } = typesOfTime
+const { day16time17_30 } = isoDate
+
 describe('formatGoogleTimeInTime', () => {
   it('should return the date in XX:XX format', () => {
-    const isoDate = '2025-03-16T17:30:00Z'
-    const result = formatGoogleTimeInTime(isoDate)
+    const result = formatGoogleTimeInTime(day16time17_30)
     expect(result).toBe('20:30')
   })
 
