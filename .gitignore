@@ -1,0 +1,7 @@
+.yarn/*
+.pnp.*
+.env
+node_modules
+coverage
+dist
+cypress.env.json
