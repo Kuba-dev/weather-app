@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { positioningFlex } from '@src/style/mixins/mixins'
 
 const size = {
-  size3XL: 600,
   sizeXXL: 500,
   sizeXL: 400,
   sizeL: 300,
@@ -13,7 +12,6 @@ const size = {
 export const WeatherTimeWrapper = styled.ul`
   ${positioningFlex({ justifyContent: 'space-between', alignItems: 'center' })};
 
-  max-width: ${size.size3XL}px;
   overflow-x: auto;
   width: 100%;
   gap: ${({ theme }) => theme.gap.size2XL}px;
