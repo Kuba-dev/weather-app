@@ -1,5 +1,5 @@
 export type Props = {
-  dayWeek: string
+  time: string
   temperature: number
   image: string
 }

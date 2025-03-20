@@ -1,11 +1,21 @@
-import GoogleCalendar from '@components/GoogleCalendar'
+import { useEffect } from 'react'
+
 import { TypeWeatherConst } from '@src/constants'
-import { useActions } from '@src/hooks/useActions'
-import { useWeatherType } from '@src/hooks/useWeatherType'
+import {
+  useActions,
+  useFetchCityCurrentWeather,
+  useWeatherType,
+} from '@src/hooks'
+import GoogleCalendar from '@components/GoogleCalendar'
 
 import { ActionButton, Wrapper, WrapperActionButton } from './styled'
 
 export default function Main() {
+  const { fetchCityCurrentWeather } = useFetchCityCurrentWeather()
+  useEffect(() => {
+    fetchCityCurrentWeather()
+  }, [fetchCityCurrentWeather])
+
   const { changeTypeWeatherReducer } = useActions()
   const { typeWeather } = useWeatherType()
 

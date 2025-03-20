@@ -1,8 +1,9 @@
-import { formatDate } from '@src/utils/formatDate'
-import { formatTime } from '@src/utils/formatTime'
 import { useEffect, useState } from 'react'
 
-import { WrapperClock } from './styled'
+import { formatDate } from '@src/utils/formatDate'
+import { formatTime } from '@src/utils/formatTime'
+
+import { Title, WrapperClock } from './styled'
 
 export default function Clock() {
   const [now, setNow] = useState<Date>(new Date())
@@ -14,8 +15,8 @@ export default function Clock() {
 
   return (
     <WrapperClock>
-      <h3>{formatTime(now)}</h3>
-      <h3>{formatDate(now)}</h3>
+      <Title>{formatTime(now)}</Title>
+      <Title>{formatDate(now)}</Title>
     </WrapperClock>
   )
 }

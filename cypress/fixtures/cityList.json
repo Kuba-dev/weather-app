@@ -1,0 +1,145 @@
+
+{
+
+    "results": [
+          {
+                "datasource": {
+                      "sourcename": "openstreetmap",
+                      "attribution": "© OpenStreetMap contributors",
+                      "license": "Open Database License",
+                      "url": "https://www.openstreetmap.org/copyright"
+                },
+                "old_name": "Менск",
+                "country": "Belarus",
+                "country_code": "by",
+                "city": "Minsk",
+                "lon": 27.5618225,
+                "lat": 53.9024716,
+                "result_type": "city",
+                "formatted": "Minsk, Belarus",
+                "address_line1": "Minsk",
+                "address_line2": "Belarus",
+                "category": "administrative",
+                "timezone": {
+                      "name": "Europe/Minsk",
+                      "offset_STD": "+03:00",
+                      "offset_STD_seconds": 10800,
+                      "offset_DST": "+03:00",
+                      "offset_DST_seconds": 10800
+                },
+                "plus_code": "9G59WH26+XP",
+                "plus_code_short": "26+XP Minsk, Belarus",
+                "rank": {
+                      "importance": 0.6699404177567978,
+                      "confidence": 1,
+                      "confidence_city_level": 1,
+                      "match_type": "full_match"
+                },
+                "place_id": "512fa86f99d38f3b4059cec87b3084f34a40f00101f9013be7000000000000c00208",
+                "bbox": {
+                      "lon1": 27.3740176,
+                      "lat1": 53.793847,
+                      "lon2": 28.0799469,
+                      "lat2": 53.9717897
+                }
+          },
+          {
+                "datasource": {
+                      "sourcename": "openstreetmap",
+                      "attribution": "© OpenStreetMap contributors",
+                      "license": "Open Database License",
+                      "url": "https://www.openstreetmap.org/copyright"
+                },
+                "old_name": "Mimigernaford",
+                "country": "Germany",
+                "country_code": "de",
+                "state": "North Rhine-Westphalia",
+                "city": "Münster",
+                "lon": 7.6251879,
+                "lat": 51.9625101,
+                "state_code": "NW",
+                "result_type": "city",
+                "formatted": "Münster, NW, Germany",
+                "address_line1": "Münster",
+                "address_line2": "NW, Germany",
+                "category": "populated_place",
+                "timezone": {
+                      "name": "Europe/Berlin",
+                      "offset_STD": "+01:00",
+                      "offset_STD_seconds": 3600,
+                      "offset_DST": "+02:00",
+                      "offset_DST_seconds": 7200,
+                      "abbreviation_STD": "CET",
+                      "abbreviation_DST": "CEST"
+                },
+                "plus_code": "9F39XJ7G+23",
+                "plus_code_short": "+23 Münster, North Rhine-Westphalia, Germany",
+                "rank": {
+                      "importance": 0.35,
+                      "confidence": 1,
+                      "confidence_city_level": 1,
+                      "match_type": "full_match"
+                },
+                "place_id": "51706bc14131801e4059ecc8ec8733fb4940f00103f90124704d1000000000c00208",
+                "bbox": {
+                      "lon1": 7.4651879,
+                      "lat1": 51.8025101,
+                      "lon2": 7.7851879,
+                      "lat2": 52.1225101
+                }
+          },
+          {
+                "datasource": {
+                      "sourcename": "openstreetmap",
+                      "attribution": "© OpenStreetMap contributors",
+                      "license": "Open Database License",
+                      "url": "https://www.openstreetmap.org/copyright"
+                },
+                "country": "Poland",
+                "country_code": "pl",
+                "state": "Masovian Voivodeship",
+                "county": "Mińsk County",
+                "city": "Mińsk Mazowiecki",
+                "postcode": "05-300",
+                "lon": 21.5587372,
+                "lat": 52.1812046,
+                "result_type": "postcode",
+                "formatted": "Mińsk Mazowiecki, Masovian Voivodeship, Poland",
+                "address_line1": "Mińsk Mazowiecki",
+                "address_line2": "Masovian Voivodeship, Poland",
+                "category": "populated_place",
+                "timezone": {
+                      "name": "Europe/Warsaw",
+                      "offset_STD": "+01:00",
+                      "offset_STD_seconds": 3600,
+                      "offset_DST": "+02:00",
+                      "offset_DST_seconds": 7200,
+                      "abbreviation_STD": "CET",
+                      "abbreviation_DST": "CEST"
+                },
+                "plus_code": "9G435HJ5+FF",
+                "plus_code_short": "J5+FF Mińsk Mazowiecki, Mińsk County, Poland",
+                "rank": {
+                      "importance": 0.3,
+                      "confidence": 1,
+                      "confidence_city_level": 1,
+                      "match_type": "full_match"
+                },
+                "place_id": "51010fb166098f35405940715bb631174a40f00103f9017d96e30100000000c0020792030930352d3330302b706c",
+                "bbox": {
+                      "lon1": 21.5187372,
+                      "lat1": 52.1412046,
+                      "lon2": 21.5987372,
+                      "lat2": 52.2212046
+                }
+          }
+    ],
+    "query": {
+          "text": "Mins",
+          "parsed": {
+                "city": "mins",
+                "expected_type": "unknown"
+          }
+    }
+
+}

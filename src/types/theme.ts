@@ -5,14 +5,13 @@ export interface ITheme {
     darkBlue: string
     gray: string
     lightGray: string
+    red: string
 
     hoverPrimaryColor: string
     shadow: string
     translucent: string
     translucentSecondary: string
   }
-
-  backgroundImageWeather: string
 
   font: {
     fontFamily: { inter: string }
@@ -42,6 +41,14 @@ export interface ITheme {
     size4XL: number
     size5XL: number
     size6XL: number
+  }
+
+  bigSize: {
+    sizeXXL: number
+    sizeXL: number
+    sizeL: number
+    sizeM: number
+    sizeS: number
   }
 
   media: {

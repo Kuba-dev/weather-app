@@ -1,0 +1,55 @@
+
+{
+
+    "results": [
+          {
+                "datasource": {
+                      "sourcename": "openstreetmap",
+                      "attribution": "© OpenStreetMap contributors",
+                      "license": "Open Database License",
+                      "url": "https://www.openstreetmap.org/copyright"
+                },
+                "old_name": "Менск",
+                "country": "Belarus",
+                "country_code": "by",
+                "city": "Minsk",
+                "lon": 27.5618225,
+                "lat": 53.9024716,
+                "result_type": "city",
+                "formatted": "Minsk, Belarus",
+                "address_line1": "Minsk",
+                "address_line2": "Belarus",
+                "category": "administrative",
+                "timezone": {
+                      "name": "Europe/Minsk",
+                      "offset_STD": "+03:00",
+                      "offset_STD_seconds": 10800,
+                      "offset_DST": "+03:00",
+                      "offset_DST_seconds": 10800
+                },
+                "plus_code": "9G59WH26+XP",
+                "plus_code_short": "26+XP Minsk, Belarus",
+                "rank": {
+                      "importance": 0.7799404177567978,
+                      "popularity": 8.995467104553104,
+                      "confidence": 0,
+                      "match_type": "match_by_city_or_disrict"
+                },
+                "place_id": "512fa86f99d38f3b4059cec87b3084f34a40f00101f9013be7000000000000c00208",
+                "bbox": {
+                      "lon1": 27.3740176,
+                      "lat1": 53.793847,
+                      "lon2": 28.0799469,
+                      "lat2": 53.9717897
+                }
+          }
+    ],
+    "query": {
+          "text": "",
+          "parsed": {
+                "house": "Minsk",
+                "expected_type": "unknown"
+          }
+    }
+
+}

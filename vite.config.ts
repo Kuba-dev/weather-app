@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
 export default defineConfig({
@@ -14,9 +15,10 @@ export default defineConfig({
       '@store': path.resolve(__dirname, './src/store'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@style': path.resolve(__dirname, './src/style'),
+      '@src/hooks/useAuthentication': '/absolute/path/to/src/hooks/useAuthenticationMock'
     }
   },
-  plugins: [react()],
+  plugins: [react(), tsconfigPaths()],
   build: {
     sourcemap: true,
   },

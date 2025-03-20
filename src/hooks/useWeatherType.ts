@@ -1,6 +1,6 @@
-import { useTypedSelector } from './useTypedSelector'
+import useTypedSelector from './useTypedSelector'
 
-export function useWeatherType() {
+export default function useWeatherType() {
   const typeWeather = useTypedSelector(state => state.typeWeather)
 
   return { typeWeather }

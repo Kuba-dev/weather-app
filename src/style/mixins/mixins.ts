@@ -1,5 +1,6 @@
-import { baseTheme } from '@src/style/theme'
 import styled from 'styled-components'
+
+import { baseTheme } from '@src/style/theme'
 
 import {
   BackgroundImageProps,
@@ -46,6 +47,13 @@ export const defaultShadow = () => `
   }
 `
 
+export const backgroundBlured = () => `
+  background-color: ${baseTheme.colors.translucent};
+  backdrop-filter: blur(15px);
+  height: 100%;
+  width: 100%;
+`
+
 export const Button = styled.button`
   ${defaultText({})}
 
@@ -53,13 +61,34 @@ export const Button = styled.button`
   width: 140px;
   height: ${({ theme }) => theme.gap.size5XL}px;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.default}px;
-  transition: all ${({ theme }) => theme.durations.ms300}s;
+  transition: all ${({ theme }) => theme.durations.ms300}s ease;
 
   &:hover {
     ${defaultShadow()};
+
     background-color: ${({ theme }) => theme.colors.hoverPrimaryColor};
   }
   &:active {
     opacity: 0.9;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    ${({ theme }) =>
+      defaultText({
+        fontSize: theme.font.fontSize.medium,
+      })}
+
+    width: 100px;
+    height: ${({ theme }) => theme.gap.size4XL}px;
+  }
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    ${({ theme }) =>
+      defaultText({
+        fontSize: theme.font.fontSize.small,
+      })}
+
+    width: 90px;
+    height: ${({ theme }) => theme.gap.size3XL}px;
   }
 `

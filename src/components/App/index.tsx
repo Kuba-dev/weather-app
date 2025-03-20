@@ -1,26 +1,31 @@
-import Header from '@components/Header'
-import Main from '@components/Main'
-import WeatherDisplay from '@components/WeatherDisplay'
-import WeatherDisplayTime from '@components/WeatherDisplayTime'
-import { TypeWeatherConst } from '@src/constants'
-import { useWeatherType } from '@src/hooks/useWeatherType'
+import { lazy, Suspense } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { ContainerApp, WrapperApp } from './styled'
+import Layout from '@src/components/Layout'
+import { LinksPages, pageList } from '@src/constants'
+
+import Loading from '../Loading'
+
+const NotFoundPage = lazy(() => import('@src/page/NotFoundPage'))
 
 export default function App() {
-  const { typeWeather } = useWeatherType()
-
   return (
-    <ContainerApp>
-      <WrapperApp>
-        <Header />
-        <Main />
-      </WrapperApp>
-      {typeWeather.type === TypeWeatherConst.DAILY ? (
-        <WeatherDisplay />
-      ) : (
-        <WeatherDisplayTime />
-      )}
-    </ContainerApp>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path={LinksPages.default} element={<Layout />}>
+          <Route index element={<Navigate to={LinksPages.home} />} />
+          {pageList.map(({ id, href, Page }) => {
+            return (
+              <Route
+                key={id}
+                path={LinksPages[href as keyof typeof LinksPages]}
+                element={<Page />}
+              />
+            )
+          })}
+          <Route path={LinksPages.notFound} element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   )
 }
