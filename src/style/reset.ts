@@ -11,7 +11,7 @@ body {
 
   background-position: center center;
   background-attachment: fixed;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 * {

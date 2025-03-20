@@ -1,6 +1,8 @@
+import { CalendarEventsState } from './types'
+
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+const initialState: CalendarEventsState = {
   events: [],
   isLoading: false,
   error: null,

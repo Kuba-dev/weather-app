@@ -2,6 +2,7 @@ import createSagaMiddleware from 'redux-saga'
 import { takeEvery } from 'redux-saga/effects'
 
 import { calendarEventsReducer } from './calendarEvents/calendarEvents.slice'
+import { stateAuthenticatedReducer } from './isAuthenticated/isAuthenticated.slice'
 import { сurrentCityReducer } from './loadingCurrentCity/loadingCurrentCity.slice'
 import { getWeatherWeekSaga } from './sagas/weatherWeek.saga'
 import { stateElasticSearchReducer } from './stateElasticSearch/stateElasticSearch.slice'
@@ -25,6 +26,7 @@ const combinedReducer = combineReducers({
   weatherWeek: weatherWeekReducer,
   currentCity: сurrentCityReducer,
   stateElasticSearch: stateElasticSearchReducer,
+  stateAuthenticated: stateAuthenticatedReducer,
 })
 
 export const store = configureStore({

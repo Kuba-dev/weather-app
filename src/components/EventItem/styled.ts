@@ -11,6 +11,11 @@ export const Item = styled.li`
 
   gap: ${({ theme }) => theme.gap.sizeXL}px;
   margin-top: ${({ theme }) => theme.gap.sizeM}px;
+
+  @media ${({ theme }) => theme.media.medium} {
+    gap: ${({ theme }) => theme.gap.sizeM}px;
+    margin-top: ${({ theme }) => theme.gap.sizeS}px;
+  }
 `
 
 export const TimeEvent = styled.p`
@@ -23,6 +28,16 @@ export const TimeEvent = styled.p`
   background-color: ${({ theme }) => theme.colors.darkBlue};
   padding: 7px 12px;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.big}px;
+
+  @media ${({ theme }) => theme.media.medium} {
+    padding: 4px 9px;
+
+    ${({ theme }) =>
+      defaultText({
+        color: theme.colors.secondary,
+        fontSize: theme.font.fontSize.small,
+      })};
+  }
 `
 
 export const NameEvent = styled.p`
@@ -31,4 +46,20 @@ export const NameEvent = styled.p`
       color: theme.colors.primary,
       fontSize: theme.font.fontSize.paragraph,
     })};
+
+  @media ${({ theme }) => theme.media.medium} {
+    ${({ theme }) =>
+      defaultText({
+        color: theme.colors.primary,
+        fontSize: theme.font.fontSize.medium,
+      })};
+  }
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    ${({ theme }) =>
+      defaultText({
+        color: theme.colors.primary,
+        fontSize: theme.font.fontSize.small,
+      })};
+  }
 `

@@ -1,19 +1,23 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { env } from '@src/constants'
+import { stateAuthenticatedActions } from '@src/store/isAuthenticated/isAuthenticated.slice'
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function useAuthentication() {
   const supabase = useSupabaseClient()
-
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true)
-  const [errorAuth, setErrorAuth] = useState<Error | null>(null)
+  const dispatch = useDispatch()
 
   const { SIGN_IN_GOOGLE_API } = env
 
   const signIn = useCallback(
     async function () {
+      if (typeof Cypress !== 'undefined' && Cypress.env('test')) {
+        return
+      }
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -26,30 +30,38 @@ export default function useAuthentication() {
 
       if (error) {
         if (error instanceof Error) {
-          setErrorAuth(error)
+          dispatch(stateAuthenticatedActions.setAuthenticatedError(error))
         } else {
-          setErrorAuth(new Error('An unknown error occurred'))
+          dispatch(
+            stateAuthenticatedActions.setAuthenticatedError(
+              new Error('An unknown error occurred'),
+            ),
+          )
         }
       }
     },
-    [supabase, SIGN_IN_GOOGLE_API],
+    [supabase, SIGN_IN_GOOGLE_API, dispatch],
   )
 
   const signOut = useCallback(
     async function () {
       await supabase.auth.signOut({ scope: 'global' })
-      setIsAuthenticated(false)
+      dispatch(stateAuthenticatedActions.setIsAuthenticated(false))
     },
-    [supabase],
+    [supabase, dispatch],
   )
 
   useEffect(() => {
+    if (typeof Cypress !== 'undefined' && Cypress.env('test')) {
+      return
+    }
+
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_, session) => {
         if (session?.user) {
-          setIsAuthenticated(true)
+          dispatch(stateAuthenticatedActions.setIsAuthenticated(true))
         } else {
-          setIsAuthenticated(false)
+          dispatch(stateAuthenticatedActions.setIsAuthenticated(false))
         }
       },
     )
@@ -57,12 +69,10 @@ export default function useAuthentication() {
     return () => {
       authListener.subscription.unsubscribe()
     }
-  }, [supabase])
+  }, [supabase, dispatch])
 
   return {
     signIn,
     signOut,
-    errorAuth,
-    isAuthenticated,
   }
 }
