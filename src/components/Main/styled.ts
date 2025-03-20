@@ -8,6 +8,10 @@ export const Wrapper = styled.main`
     justifyContent: 'space-between',
     alignItems: 'end',
   })};
+
+  @media ${({ theme }) => theme.media.extraLarge} {
+    flex-direction: column;
+  }
 `
 
 export const WrapperActionButton = styled.div`
@@ -15,6 +19,20 @@ export const WrapperActionButton = styled.div`
 
   width: 300px;
   gap: ${({ theme }) => theme.gap.size3XL}px;
+
+  @media ${({ theme }) => theme.media.extraLarge} {
+    ${positioningFlex({
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexDirection: 'row',
+    })};
+
+    width: 100%;
+  }
+
+  @media ${({ theme }) => theme.media.medium} {
+    gap: ${({ theme }) => theme.gap.sizeS}px;
+  }
 `
 
 export const ActionButton = styled(Button)`
@@ -32,5 +50,9 @@ export const ActionButton = styled(Button)`
 
   &:active {
     opacity: ${({ disabled }) => (disabled ? 1 : 0.6)};
+  }
+
+  @media ${({ theme }) => theme.media.extraLarge} {
+    width: 45%;
   }
 `

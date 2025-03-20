@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects'
 
-import { requestAPI } from '@src/api/fetchAPI'
+import { fetchAPI } from '@src/api/fetchAPI'
 import { env, realFetch } from '@src/constants'
 import { weatherWeekMock } from '@src/mocks/weatherMock'
 
@@ -17,7 +17,7 @@ export function* getWeatherWeekSaga(action: GetWeatherWeekAction): Generator {
     let forecast
 
     if (realFetch) {
-      const payload = yield requestAPI(CITY_WEATHERAPI_URL, {
+      const payload = yield fetchAPI(CITY_WEATHERAPI_URL, {
         params: {
           key: WEATHERAPI_API,
           q: `${lat},${lon}`,
@@ -26,7 +26,6 @@ export function* getWeatherWeekSaga(action: GetWeatherWeekAction): Generator {
           alerts: 'no',
         },
       })
-
       forecast = payload.data.forecast
     } else {
       forecast = weatherWeekMock

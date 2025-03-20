@@ -37,7 +37,14 @@ export const baseTheme: ITheme = {
     size4XL: 40,
     size5XL: 45,
     size6XL: 50,
-    size7XL: 70,
+  },
+
+  bigSize: {
+    sizeXXL: 510,
+    sizeXL: 410,
+    sizeL: 270,
+    sizeM: 150,
+    sizeS: 100,
   },
 
   media: {

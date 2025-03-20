@@ -71,4 +71,24 @@ export const Button = styled.button`
   &:active {
     opacity: 0.9;
   }
+
+  @media ${({ theme }) => theme.media.small} {
+    ${({ theme }) =>
+      defaultText({
+        fontSize: theme.font.fontSize.medium,
+      })}
+
+    width: 100px;
+    height: ${({ theme }) => theme.gap.size4XL}px;
+  }
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    ${({ theme }) =>
+      defaultText({
+        fontSize: theme.font.fontSize.small,
+      })}
+
+    width: 90px;
+    height: ${({ theme }) => theme.gap.size3XL}px;
+  }
 `

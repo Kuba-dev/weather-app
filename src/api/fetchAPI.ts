@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-export async function requestAPI(
+export async function fetchAPI(
   url: string,
   options: AxiosRequestConfig | undefined = {},
 ) {

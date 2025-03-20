@@ -24,11 +24,14 @@ import {
 export default memo(function GoogleCalendar() {
   const [modalOpen, setModalOpen] = useState(false)
 
-  const { signIn, signOut, errorAuth, isAuthenticated } = useAuthentication()
+  const { signIn, signOut } = useAuthentication()
   const { fetchLatestEvents, session, isFetching } =
     useFetchCalendarLastestEvents()
   const { events, error, isLoading } = useTypedSelector(
     state => state.calendarEvents,
+  )
+  const { isAuthenticated, authenticatedError } = useTypedSelector(
+    state => state.stateAuthenticated,
   )
   const { clearEvents, clearError } = useActions()
 
@@ -67,7 +70,9 @@ export default memo(function GoogleCalendar() {
         ) : (
           <AuthButton onClick={handleClickSignIn}>Sign In</AuthButton>
         )}
-        {errorAuth && <ErrorMessage>{errorAuth.message}</ErrorMessage>}
+        {authenticatedError && (
+          <ErrorMessage>{authenticatedError.message}</ErrorMessage>
+        )}
       </AuthActionsWrapper>
       {modalOpen && ModalPortal}
 

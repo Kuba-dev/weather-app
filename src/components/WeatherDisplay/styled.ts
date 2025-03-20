@@ -15,9 +15,25 @@ export const WeatherTodayWrapper = styled.div`
 `
 
 export const WeatherDailyWrapper = styled.ul`
-  ${positioningFlex({ justifyContent: 'end', alignItems: 'center' })};
+  ${positioningFlex({ justifyContent: 'center', alignItems: 'center' })};
 
-  max-width: 750px;
   width: 100%;
   gap: ${({ theme }) => theme.gap.size3XL}px;
+
+  &:first-child {
+    margin-right: ${({ theme }) => theme.gap.size3XL}px;
+  }
+
+  @media ${({ theme }) => theme.media.extraLarge} {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+
+    &:first-child {
+      margin-right: ${({ theme }) => theme.gap.sizeXXS}px;
+    }
+  }
+
+  @media ${({ theme }) => theme.media.verySmall} {
+    gap: ${({ theme }) => theme.gap.sizeL}px;
+  }
 `
