@@ -149,7 +149,7 @@ export default memo(function SearchCity() {
           <CityList>
             {cityList.map(({ city, id }) => {
               if (city === undefined) return
-              
+
               return (
                 <CityItem key={id}>
                   <CitySelect

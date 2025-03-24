@@ -14,7 +14,8 @@ export default function ErrorPage() {
     <Container>
       <Title>It seems something went wrong...</Title>
       <Title style={{ marginTop: 20 }}>
-        We apologize for the inconvenience
+        {' '}
+        // del We apologize for the inconvenience
       </Title>
       <BackButton onClick={handleClick}>Update page</BackButton>
     </Container>

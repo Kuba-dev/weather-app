@@ -1,7 +1,7 @@
 import { calendarEventsActions } from '@store/calendarEvents/calendarEvents.slice'
 import { stateAuthenticatedActions } from '@store/isAuthenticated/isAuthenticated.slice'
 import { eventList, linkOnPage } from 'cypress/constants'
-
+// разбить
 describe('Сhecking different scenarios', () => {
   beforeEach(function () {
     cy.loginByGoogleApi()
