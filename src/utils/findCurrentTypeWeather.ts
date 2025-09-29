@@ -15,7 +15,10 @@ export function findCurrentTypeWeather(typeWeather: string) {
 
   let backgroundWeatherImage = backgroundDefault
   for (const [key, values] of Object.entries(allTypeWeather)) {
-    if (values.includes(typeWeather)) {
+    if (
+      typeWeather &&
+      values.some(v => v.toLowerCase() === typeWeather.toLowerCase().trim())
+    ) {
       switch (key) {
         case 'sunny':
           backgroundWeatherImage = backgroundSunny
