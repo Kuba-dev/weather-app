@@ -11,6 +11,7 @@ import backgroundSunny from '@assets/images/backgroundSunny.jpg'
 import backgroundThunderstorm from '@assets/images/backgroundThunderstorm.jpg'
 import loading from '@assets/images/loading.gif'
 const Home = lazy(() => import('@src/page/Home'))
+const NotesPage = lazy(() => import('@src/page/Notes'))
 const ErrorPage = lazy(() => import('@src/page/Error'))
 
 export const realFetch = true
@@ -18,12 +19,14 @@ export const realFetch = true
 export const pageList = [
   { id: 1, href: 'home', Page: Home },
   { id: 2, href: 'error', Page: ErrorPage },
+  { id: 3, href: 'notes', Page: NotesPage },
 ]
 
 export enum LinksPages {
   default = '/',
   home = 'home',
   error = 'error',
+  notes = 'notes',
   notFound = '*',
 }
 

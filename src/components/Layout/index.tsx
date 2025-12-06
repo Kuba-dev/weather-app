@@ -9,6 +9,7 @@ import { LinksPages, TypeWeatherConst } from '@src/constants'
 import { useWeatherType } from '@src/hooks'
 
 import { ContainerApp, Wrapper, WrapperBlured } from './styled'
+import NavigationBar from '../NavigationBar'
 
 export default memo(function Layout() {
   const { typeWeather } = useWeatherType()
@@ -19,6 +20,7 @@ export default memo(function Layout() {
     <ContainerApp>
       <WrapperBlured>
         <Wrapper>
+          <NavigationBar />
           <Clock />
           {isPathnameEqualHome && <SearchCity />}
         </Wrapper>

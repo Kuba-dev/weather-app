@@ -19,7 +19,7 @@ import { HeaderSection, Title } from './styled'
 export default function Header() {
   return (
     <HeaderSection>
-      <Title>Modsen Todo list</Title>
+      <Title>Todo list</Title>
       <Navigation />
     </HeaderSection>
   )

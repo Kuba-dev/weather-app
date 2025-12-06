@@ -38,6 +38,7 @@ export default function useFetchCalendarLastestEvents() {
       } else {
         fetchEventsFailure(new Error('An unknown error occurred'))
       }
+    } finally {
       isFetching.current = false
     }
   }, [

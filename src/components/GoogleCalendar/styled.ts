@@ -39,6 +39,9 @@ export const AuthActionsWrapper = styled.div`
 `
 
 export const AuthButton = styled(Button)`
+  height: 60px;
+  margin-top: 5px;
+
   @media ${({ theme }) => theme.media.medium} {
     width: ${sizeButton.XL};
     height: ${sizeButton.M};

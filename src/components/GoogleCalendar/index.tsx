@@ -56,6 +56,12 @@ export default memo(function GoogleCalendar() {
     document.body,
   )
 
+  const handleClickRefreshEvents = async () => {
+    if (session && !isFetching.current) {
+      await fetchLatestEvents()
+    }
+  }
+
   useEffect(() => {
     if (session && !isFetching.current) {
       fetchLatestEvents()
@@ -66,7 +72,12 @@ export default memo(function GoogleCalendar() {
     <Wrapper>
       <AuthActionsWrapper>
         {isAuthenticated ? (
-          <AuthButton onClick={handleClickOpenModal}>Sign Out</AuthButton>
+          <>
+            <AuthButton onClick={handleClickOpenModal}>Sign Out</AuthButton>
+            <AuthButton onClick={handleClickRefreshEvents}>
+              Refresh Events
+            </AuthButton>
+          </>
         ) : (
           <AuthButton onClick={handleClickSignIn}>Sign In</AuthButton>
         )}
