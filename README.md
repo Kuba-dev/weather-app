@@ -1,3 +1,4 @@
+
 ### 1. We register props typing in the component folder called types.ts, use type. Sample code and structure below.
 
 ```
