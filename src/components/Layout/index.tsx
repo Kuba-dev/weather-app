@@ -8,8 +8,9 @@ import WeatherDisplayTime from '@src/components/WeatherDisplayTime'
 import { LinksPages, TypeWeatherConst } from '@src/constants'
 import { useWeatherType } from '@src/hooks'
 
-import { ContainerApp, Wrapper, WrapperBlured } from './styled'
 import NavigationBar from '../NavigationBar'
+
+import { ContainerApp, Wrapper, WrapperBlured } from './styled'
 
 export default memo(function Layout() {
   const { typeWeather } = useWeatherType()

@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import { Wrapper } from './styled'
+
 import { LinksPages } from '@src/constants'
+
+import { Wrapper } from './styled'
 
 export default function NavigationBar() {
   return (
@@ -10,4 +12,3 @@ export default function NavigationBar() {
     </Wrapper>
   )
 }
-
