@@ -1,5 +1,5 @@
-import { calendarEventsActions } from '@store/calendarEvents/calendarEvents.slice'
-import { stateAuthenticatedActions } from '@store/isAuthenticated/isAuthenticated.slice'
+import { calendarEventsActions } from '../../src/store/calendarEvents/calendarEvents.slice'
+import { stateAuthenticatedActions } from '../../src/store/isAuthenticated/isAuthenticated.slice'
 import { eventList, linkOnPage } from 'cypress/constants'
 // разбить
 describe('Сhecking different scenarios', () => {
@@ -47,6 +47,8 @@ describe('Сhecking different scenarios', () => {
     cy.get('input[name="city"]').type('Minsk')
     cy.contains('Minsk').click()
     cy.get('button[type="submit"]').click()
+
+    cy.wait(5000)
 
     cy.contains('Today')
     cy.contains('0')

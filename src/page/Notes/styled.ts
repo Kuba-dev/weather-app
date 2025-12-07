@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { positioningFlex, defaultText } from '@src/style/mixins/mixins'
 
-// ------ STYLES ------
+import { defaultText, positioningFlex } from '@src/style/mixins/mixins'
 
 export const Wrapper = styled.section`
   ${positioningFlex({
@@ -131,4 +129,3 @@ export const DeleteButton = styled.button`
     opacity: 0.5;
   }
 `
-

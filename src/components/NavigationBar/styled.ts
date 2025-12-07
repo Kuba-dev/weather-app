@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { positioningFlex, defaultText } from '@src/style/mixins/mixins'
+
+import { defaultText, positioningFlex } from '@src/style/mixins/mixins'
 
 export const Wrapper = styled.nav`
   ${positioningFlex({
@@ -45,4 +46,3 @@ export const Wrapper = styled.nav`
     gap: ${({ theme }) => theme.gap.sizeM}px;
   }
 `
-
