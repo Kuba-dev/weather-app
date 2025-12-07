@@ -88,23 +88,28 @@ export default memo(function GoogleCalendar() {
       {modalOpen && ModalPortal}
 
       <EventsList>
-        {isLoading && <Loading />}
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        {!isAuthenticated && !error && (
-          <Title>Login to your account to see your events</Title>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {!isAuthenticated && !error && (
+              <Title>Login to your account to see your events</Title>
+            )}
+            {!events.length &&
+              !isLoading &&
+              isAuthenticated &&
+              isFetching.current &&
+              !error && <Title>There are no events today.</Title>}
+            {events.map(({ id, summary, start }) => {
+              const dateTime =
+                (start as { dateTime?: string }).dateTime ||
+                (start as { date?: string }).date
+              const time = dateTime ? formatGoogleTimeInTime(dateTime) : 'N/A'
+              return <EventItem key={id} summury={summary} startTime={time} />
+            })}
+          </>
         )}
-        {!events.length &&
-          !isLoading &&
-          isAuthenticated &&
-          isFetching.current &&
-          !error && <Title>There are no events today.</Title>}
-        {events.map(({ id, summary, start }) => {
-          const dateTime =
-            (start as { dateTime?: string }).dateTime ||
-            (start as { date?: string }).date
-          const time = dateTime ? formatGoogleTimeInTime(dateTime) : 'N/A'
-          return <EventItem key={id} summury={summary} startTime={time} />
-        })}
       </EventsList>
     </Wrapper>
   )

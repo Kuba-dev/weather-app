@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import {
   AddButton,
   CreateArea,
@@ -68,4 +69,3 @@ export default function Notes() {
     </Wrapper>
   )
 }
-
